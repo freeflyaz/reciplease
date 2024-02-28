@@ -1,0 +1,32 @@
+:root {
+  --yellow: #f9b513;
+  --orange: #f08312;
+  --blush: #fbce9d;
+  --green: #1f4e43;
+  --off-white: #f8f1ec;
+  --black: #212427;
+  --white: #ffffff;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--yellow);
+}
+
+.btn-large {
+  height: 5rem;
+  padding: 2rem;
+  background-color: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+}

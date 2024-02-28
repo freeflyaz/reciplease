@@ -4,7 +4,7 @@ const recipeController = require("../Controllers/recipe");
 
 // userController routes:
 router.post("/register", userController.registerUser);
-// router.post("/login", userController.loginUser);
+router.post("/login", userController.loginUser);
 // router.post("/logout", userController.logoutUser);
 
 // recipeController routes:

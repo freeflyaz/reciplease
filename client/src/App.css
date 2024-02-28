@@ -1,0 +1,22 @@
+.app {
+  /* max-width: 1440px; */
+  padding: 50px 140px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 16px;
+}
+
+/* NAVBAR -------------------------------------------------- */
+
+.navbar {
+  grid-column: 1 / span 12;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.navbar img {
+  width: 17rem;
+}
+
+/* --------------------------------------------------------- */

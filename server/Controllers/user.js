@@ -4,10 +4,11 @@ const userModel = require("../Models/user");
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
+  // Check if user already exists:
   const user = await userModel.findOne({ email: email });
-
   if (user) return res.status(409).send({ message: "User already exists" });
 
+  // Hash the password and add the new user to the db:
   try {
     if (password === "") throw new Error();
     const hash = await bcrypt.hash(password, 10);
@@ -16,11 +17,26 @@ const registerUser = async (req, res) => {
       password: hash,
     });
     await newUser.save();
+
     res.status(201).send({ message: "User created" });
   } catch (error) {
     res.status(400).send({ message: "Could not create user" });
   }
 };
 
-module.exports = { registerUser };
-// loginUser, logoutUser;
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    // Find the user and check their password is correct:
+    const user = await userModel.findOne({ email: email });
+    const validatedPass = await bcrypt.compare(password, user.password);
+    if (!validatedPass) throw new Error();
+
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(401).send({ message: "Username or password is incorrect" });
+  }
+};
+
+module.exports = { registerUser, loginUser };
+// logoutUser;
