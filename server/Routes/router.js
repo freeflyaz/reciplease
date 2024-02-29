@@ -10,5 +10,6 @@ router.post("/login", userController.loginUser);
 // recipeController routes:
 router.get("/dashboard/:id", recipeController.getRecipes);
 router.post("/create-recipe", recipeController.addARecipe);
+router.post("/favourite-recipe", recipeController.addFavouritedUser);
 
 module.exports = router;

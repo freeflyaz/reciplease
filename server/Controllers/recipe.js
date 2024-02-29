@@ -30,4 +30,21 @@ const addARecipe = async (req, res) => {
   }
 };
 
-module.exports = { getRecipes, addARecipe };
+const addFavouritedUser = async (req, res) => {
+  try {
+    // Add recipe to recipes collection:
+    const recipe = await recipeModel.findOne({
+      _id: req.body._id,
+    });
+
+    // Update favouritedBy array in recipes collection:
+    recipe.favouritedBy.push(req.body.userId);
+    recipe.save();
+
+    res.status(201).send(recipe);
+  } catch (error) {
+    res.status(400).send({ error, message: "Could not favourite recipe" });
+  }
+};
+
+module.exports = { getRecipes, addARecipe, addFavouritedUser };

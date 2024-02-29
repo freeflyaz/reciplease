@@ -40,3 +40,20 @@ export async function getRecipes(userID) {
     console.error(error);
   }
 }
+
+export async function addUserToFavouritedBy(recipeID, userID) {
+  try {
+    const body = { recipeID, userID };
+    const res = await fetch(`${BASE_URL}/favourite-recipe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

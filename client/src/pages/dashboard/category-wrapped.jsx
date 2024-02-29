@@ -11,7 +11,11 @@ function CategoryWrapped({ categoryTitle }) {
   return (
     <>
       {recipesByCategory.length === 0 ? (
-        <h2>You have no recipes in this section. Get cooking!</h2>
+        categoryTitle === "Favourites" ? (
+          <h2>So far, you have no favourite recipes...</h2>
+        ) : (
+          <h2>You have no recipes in this section. Get cooking!</h2>
+        )
       ) : (
         <>
           <h2>{categoryTitle}</h2>

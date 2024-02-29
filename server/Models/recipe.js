@@ -13,12 +13,12 @@ const RecipeSchema = new mongoose.Schema({
   ingredients: [{ type: String, required: true }],
   method: [{ type: String, required: true }],
 
-  // favouritedBy: [
-  //   {
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: "User",
-  //   },
-  // ],
+  favouritedBy: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
