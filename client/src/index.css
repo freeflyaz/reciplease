@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   --yellow: #f9b513;
   --orange: #f08312;
+  --darker-orange: #e27d10;
   --blush: #fbce9d;
   --green: #1f4e43;
   --off-white: #f8f1ec;
@@ -14,6 +17,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Montserrat", sans-serif;
+  /*
+  Weights:
+  Regular: 400
+  Semibold: 600
+  Bold: 700
+  */
 }
 
 body {
@@ -21,12 +31,50 @@ body {
   background-color: var(--yellow);
 }
 
-.btn-large {
-  height: 5rem;
-  padding: 2rem;
+/* BUTTON STYLING ----------------------------------------------- */
+
+button {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
   background-color: var(--orange);
   color: var(--white);
   border: none;
-  border-radius: 3rem;
-  cursor: pointer;
+  font-weight: 600;
 }
+
+.btn-category {
+  height: 2rem;
+  padding: 0 1rem;
+  background-color: var(--blush);
+  color: var(--orange);
+  border-radius: 3rem;
+}
+
+.active {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+/* -------------------------------------------------------------- */
+
+/* FORM STYLING ------------------------------------------------- */
+
+form input {
+  min-height: 3rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+form button {
+  height: 3rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+form button:hover {
+  background-color: var(--darker-orange);
+  scale: 1.025;
+}
+
+/* -------------------------------------------------------------- */

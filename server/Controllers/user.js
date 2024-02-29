@@ -6,7 +6,10 @@ const registerUser = async (req, res) => {
 
   // Check if user already exists:
   const user = await userModel.findOne({ email: email });
-  if (user) return res.status(409).send({ message: "User already exists" });
+  if (user)
+    return res
+      .status(409)
+      .send({ success: false, message: "User already exists" });
 
   // Hash the password and add the new user to the db:
   try {
@@ -18,9 +21,9 @@ const registerUser = async (req, res) => {
     });
     await newUser.save();
 
-    res.status(201).send({ message: "User created" });
+    res.status(201).send({ success: true, message: "User created" });
   } catch (error) {
-    res.status(400).send({ message: "Could not create user" });
+    res.status(400).send({ success: false, message: "Could not create user" });
   }
 };
 
@@ -32,9 +35,11 @@ const loginUser = async (req, res) => {
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
 
-    res.status(200).send(user);
+    res.status(200).send({ success: true, user });
   } catch (error) {
-    res.status(401).send({ message: "Username or password is incorrect" });
+    res
+      .status(401)
+      .send({ success: false, message: "Username or password is incorrect" });
   }
 };
 

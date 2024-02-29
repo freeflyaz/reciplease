@@ -4,7 +4,8 @@ const userModel = require("../Models/user");
 const getRecipes = async (req, res) => {
   try {
     // Find user and populate their recipes array:
-    const user = await userModel.findOne({ _id: "65df6b55a7005cc4479303d1" });
+    const id = req.params.id;
+    const user = await userModel.findOne({ _id: id });
     userWithRecipes = await user.populate("recipes");
 
     res.status(200).send(userWithRecipes.recipes);

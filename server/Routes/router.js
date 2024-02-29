@@ -8,7 +8,7 @@ router.post("/login", userController.loginUser);
 // router.post("/logout", userController.logoutUser);
 
 // recipeController routes:
-router.get("/dashboard", recipeController.getRecipes);
+router.get("/dashboard/:id", recipeController.getRecipes);
 router.post("/create-recipe", recipeController.addARecipe);
 
 module.exports = router;
