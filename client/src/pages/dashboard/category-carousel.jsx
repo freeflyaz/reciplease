@@ -1,5 +1,5 @@
 import RecipeCard from "../../components/recipe-card";
-import { useStore } from "../../store";
+import { useStore } from "../../zustand/store";
 
 function CategoryCarousel({ categoryTitle }) {
   // Bring in all recipes and filter them to match the carousel's category:

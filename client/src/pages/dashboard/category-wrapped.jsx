@@ -1,12 +1,12 @@
 import RecipeCard from "../../components/recipe-card";
-import { useStore } from "../../store";
+import { useStore } from "../../zustand/store";
 
 function CategoryWrapped({ categoryTitle }) {
   // Bring in all recipes and filter them to match the carousel's category:
   const recipes = useStore((state) => state.recipes);
-  const recipesByCategory = recipes.filter(
-    (recipe) => recipe.category === categoryTitle,
-  );
+  const recipesByCategory = recipes.length
+    ? recipes.filter((recipe) => recipe.category === categoryTitle)
+    : [];
 
   return (
     <>
