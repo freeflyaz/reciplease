@@ -14,6 +14,7 @@ function LogInForm() {
   const navigate = useNavigate();
 
   // FUNCTIONS:
+  // Update form's inputs' values:
   function handleChange(e) {
     const { name, value } = e.target;
     setState((prevState) => ({
@@ -22,8 +23,10 @@ function LogInForm() {
     }));
   }
 
+  // Error pop-up if user's details are incorrect:
   const handleError = (err) => toast.error(err, { position: "top-right" });
 
+  // On submit, send details to the server:
   async function handleSubmit(e) {
     e.preventDefault();
 

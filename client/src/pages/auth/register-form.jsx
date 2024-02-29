@@ -13,6 +13,7 @@ function RegisterForm() {
   const [state, setState] = useState(initialState);
 
   // FUNCTIONS:
+  // Update form's inputs' values:
   function handleChange(e) {
     const { name, value } = e.target;
     setState((prevState) => ({
@@ -21,10 +22,13 @@ function RegisterForm() {
     }));
   }
 
+  // Error pop-up if user's details are incorrect or already used:
   const handleError = (err) => toast.error(err, { position: "top-right" });
 
+  // Success pop-up if user's details are accepted:
   const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
 
+  // On submit, send details to the server:
   async function handleSubmit(e) {
     e.preventDefault();
 

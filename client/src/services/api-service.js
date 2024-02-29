@@ -31,3 +31,12 @@ export async function login(user) {
     console.error(error);
   }
 }
+
+export async function getRecipes(userID) {
+  try {
+    const res = await fetch(`${BASE_URL}/dashboard/${userID}`);
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
