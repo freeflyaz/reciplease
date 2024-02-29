@@ -142,6 +142,16 @@
   padding: 5px;
 }
 
+.category-wrapped-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow-x: scroll;
+  margin-bottom: 50px;
+  padding: 5px;
+}
+
 .recipe-card {
   width: 32.75%;
   background-color: var(--white);
@@ -151,6 +161,11 @@
   display: flex;
   flex-direction: column;
   border-radius: 15px;
+  cursor: pointer;
+}
+
+.recipe-card:hover {
+  scale: 1.01;
 }
 
 .recipe-img {
