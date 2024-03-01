@@ -41,6 +41,22 @@ export async function getRecipes(userID) {
   }
 }
 
+export async function createRecipe(recipe) {
+  try {
+    const res = await fetch(`${BASE_URL}/create-recipe`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipe),
+    });
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function toggleFavouritedBy(recipeId, userId) {
   try {
     const body = { recipeId, userId };

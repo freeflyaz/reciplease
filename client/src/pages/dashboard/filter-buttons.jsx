@@ -21,42 +21,49 @@ function FilterButtons() {
       >
         All Recipes
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Starters" ? "active" : ""}`}
         onClick={() => handleClick("Starters")}
       >
         Starters
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Mains" ? "active" : ""}`}
         onClick={() => handleClick("Mains")}
       >
         Mains
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Sides" ? "active" : ""}`}
         onClick={() => handleClick("Sides")}
       >
         Sides
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Desserts" ? "active" : ""}`}
         onClick={() => handleClick("Desserts")}
       >
         Desserts
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Bakery" ? "active" : ""}`}
         onClick={() => handleClick("Bakery")}
       >
         Bakery
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Drinks" ? "active" : ""}`}
         onClick={() => handleClick("Drinks")}
       >
         Drinks
       </button>
+
       <button
         className={`btn-category ${selectedButton === "Favourites" ? "active" : ""}`}
         onClick={() => handleClick("Favourites")}

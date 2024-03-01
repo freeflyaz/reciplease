@@ -2,9 +2,11 @@ import RecipeCard from "../../components/recipe-card";
 import { useStore } from "../../zustand/store";
 
 function CategoryWrapped({ categoryTitle }) {
+  // VARIABLES:
+  // userID and recipes array from the Zustand store:
   const userID = useStore((state) => state.userID);
-  // Bring in all recipes and filter them to match the carousel's category:
   const recipes = useStore((state) => state.recipes);
+  // Filter them to match the carousel's category:and filter them to match the carousel's category:
   const recipesByCategory = recipes.length
     ? recipes.filter((recipe) => recipe.category === categoryTitle)
     : [];
@@ -14,7 +16,6 @@ function CategoryWrapped({ categoryTitle }) {
 
   return (
     <>
-      {console.log(categoryTitle)}
       {categoryTitle !== "Favourites" && recipesByCategory.length === 0 ? (
         <h2>So far, you have no recipes in this section...</h2>
       ) : (

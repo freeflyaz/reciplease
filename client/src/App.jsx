@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./pages/auth";
 import Dashboard from "./pages/dashboard";
 import RecipeDetail from "./pages/recipe-detail";
-import CreateRecipe from "./pages/create-recipe";
+import CreateRecipe from "./pages/create-recipe/index";
 
 function App() {
   // RENDER:

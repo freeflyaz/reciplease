@@ -30,25 +30,23 @@ const addARecipe = async (req, res) => {
   }
 };
 
-const addFavouritedUser = async (req, res) => {
+const toggleFavouritedUser = async (req, res) => {
   try {
     // Find recipe:
     const recipe = await recipeModel.findOne({
       _id: req.body.recipeId,
     });
 
-    // Update favouritedBy array in recipes collection with userId:
+    // If userID is in recipe's favouriteBy array, remove, else add:
     if (recipe.favouritedBy.includes(req.body.userId)) {
       const index = recipe.favouritedBy.indexOf(req.body.userId);
       recipe.favouritedBy.splice(index, 1);
       console.log(recipe.favouritedBy);
       recipe.save();
-
       res.status(201).send(recipe);
     } else {
       recipe.favouritedBy.push(req.body.userId);
       recipe.save();
-
       res.status(201).send(recipe);
     }
   } catch (error) {
@@ -56,4 +54,4 @@ const addFavouritedUser = async (req, res) => {
   }
 };
 
-module.exports = { getRecipes, addARecipe, addFavouritedUser };
+module.exports = { getRecipes, addARecipe, toggleFavouritedUser };

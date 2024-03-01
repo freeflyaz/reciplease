@@ -16,7 +16,11 @@ function Auth() {
   return (
     <div className="auth-container">
       <div className="auth-form-container">
-        <img src={recipleaseLogo} alt="Reciplease Logo" />
+        <img
+          src={recipleaseLogo}
+          alt="Reciplease Logo"
+          className="reciplease-logo"
+        />
         <div className="auth-btns">
           <button
             className={`btn-category ${selectedButton === "Log In" ? "active" : ""}`}

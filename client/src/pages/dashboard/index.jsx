@@ -8,14 +8,16 @@ import { useEffect } from "react";
 import { getRecipes } from "../../services/api-service";
 
 function Dashboard() {
-  // Bring in userID and recipes array from Zustand store:
+  // VARIABLES:
+  // userID, recipes array and filteredCategory from Zustand store:
   const userID = useStore((state) => state.userID);
-  const filteredCategory = useStore((state) => state.filteredCategory);
   const allRecipes = useStore((state) => state.recipes);
   const { addRecipes } = useStore(); // Populates the Zustand recipes array
+  const filteredCategory = useStore((state) => state.filteredCategory);
 
+  // USE EFFECT:
+  // Get all recipes on load and update recipes array in the Zustand store:
   useEffect(() => {
-    // Get all recipes on load and update Zustand store:
     async function getRecipesArr(userID) {
       const res = await getRecipes(userID);
       addRecipes(res);
@@ -23,6 +25,7 @@ function Dashboard() {
     getRecipesArr(userID);
   }, []);
 
+  // RENDER:
   return (
     <div className="dashboard-container">
       <Navbar />

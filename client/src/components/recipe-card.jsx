@@ -1,22 +1,24 @@
-import favouriteIconRed from "../assets/favourite-true-icon.svg";
-import favouriteIconGrey from "../assets/favourite-false-icon.svg";
-import { toggleFavouritedBy } from "../services/api-service";
 import { useStore } from "../zustand/store";
+import { toggleFavouritedBy } from "../services/api-service";
+import favouriteIconTrue from "../assets/favourite-true-icon.svg";
+import favouriteIconFalse from "../assets/favourite-false-icon.svg";
 
 function RecipeCard({ recipe }) {
+  // VARIABLES:
   const userID = useStore((state) => state.userID);
   const recipes = useStore((state) => state.recipes);
-  const { updateRecipes } = useStore(); // Updates the Zustand recipes array
-
+  const { updateRecipes } = useStore();
   let favouriteRecipes = recipes.filter(
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
   );
 
-  async function handleClick(recipeID, userID) {
+  // FUNCTIONS:
+  async function handleFavourite(recipeID, userID) {
     const res = await toggleFavouritedBy(recipeID, userID);
-    updateRecipes(res);
+    updateRecipes(res); // Updates the Zustand recipes array to reflect favourite status
   }
 
+  // RENDER:
   return (
     <div className="recipe-card">
       <img src={recipe.imageUrl} alt="Recipe Photo" className="recipe-img" />
@@ -30,12 +32,12 @@ function RecipeCard({ recipe }) {
           src={
             favouriteRecipes &&
             favouriteRecipes.find((favRecipe) => favRecipe._id === recipe._id)
-              ? favouriteIconRed
-              : favouriteIconGrey
+              ? favouriteIconTrue
+              : favouriteIconFalse
           }
           alt="Heart icon"
           className="favourite-icon"
-          onClick={() => handleClick(recipe._id, userID)}
+          onClick={() => handleFavourite(recipe._id, userID)}
         />
       </div>
     </div>

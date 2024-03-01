@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 function AddAndSearchBar() {
   const navigate = useNavigate();
 
+  // RENDER:
   return (
     <div className="add-and-search-bar">
       <button
@@ -12,7 +13,7 @@ function AddAndSearchBar() {
           navigate("/create-recipe");
         }}
       >
-        +
+        Add recipe
       </button>
       <form className="search-bar">
         <img src={searchIcon} alt="Magnifying glass icon" />
