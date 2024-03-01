@@ -12,13 +12,13 @@ function Dashboard() {
   const userID = useStore((state) => state.userID);
   const filteredCategory = useStore((state) => state.filteredCategory);
   const allRecipes = useStore((state) => state.recipes);
-  const { updateRecipes } = useStore(); // Updates the Zustand recipes array
+  const { addRecipes } = useStore(); // Populates the Zustand recipes array
 
   useEffect(() => {
     // Get all recipes on load and update Zustand store:
     async function getRecipesArr(userID) {
       const res = await getRecipes(userID);
-      updateRecipes(res);
+      addRecipes(res);
     }
     getRecipesArr(userID);
   }, []);

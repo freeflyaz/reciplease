@@ -41,9 +41,9 @@ export async function getRecipes(userID) {
   }
 }
 
-export async function addUserToFavouritedBy(recipeID, userID) {
+export async function toggleFavouritedBy(recipeId, userId) {
   try {
-    const body = { recipeID, userID };
+    const body = { recipeId, userId };
     const res = await fetch(`${BASE_URL}/favourite-recipe`, {
       method: "POST",
       headers: {

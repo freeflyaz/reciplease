@@ -32,16 +32,25 @@ const addARecipe = async (req, res) => {
 
 const addFavouritedUser = async (req, res) => {
   try {
-    // Add recipe to recipes collection:
+    // Find recipe:
     const recipe = await recipeModel.findOne({
-      _id: req.body._id,
+      _id: req.body.recipeId,
     });
 
-    // Update favouritedBy array in recipes collection:
-    recipe.favouritedBy.push(req.body.userId);
-    recipe.save();
+    // Update favouritedBy array in recipes collection with userId:
+    if (recipe.favouritedBy.includes(req.body.userId)) {
+      const index = recipe.favouritedBy.indexOf(req.body.userId);
+      recipe.favouritedBy.splice(index, 1);
+      console.log(recipe.favouritedBy);
+      recipe.save();
 
-    res.status(201).send(recipe);
+      res.status(201).send(recipe);
+    } else {
+      recipe.favouritedBy.push(req.body.userId);
+      recipe.save();
+
+      res.status(201).send(recipe);
+    }
   } catch (error) {
     res.status(400).send({ error, message: "Could not favourite recipe" });
   }
