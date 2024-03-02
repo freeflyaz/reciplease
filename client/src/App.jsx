@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./pages/auth";
 import Dashboard from "./pages/dashboard";
-import RecipeDetail from "./pages/recipe-detail";
+import RecipeDetail from "./pages/recipe-detail/index";
 import CreateRecipe from "./pages/create-recipe/index";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/recipe-detail" element={<RecipeDetail />} />
+          <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
           <Route path="/create-recipe" element={<CreateRecipe />} />
         </Routes>
       </Router>

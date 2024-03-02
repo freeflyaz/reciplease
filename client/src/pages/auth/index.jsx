@@ -21,7 +21,7 @@ function Auth() {
           alt="Reciplease Logo"
           className="reciplease-logo"
         />
-        <div className="auth-btns">
+        <div className="toggle-btns">
           <button
             className={`btn-category ${selectedButton === "Log In" ? "active" : ""}`}
             onClick={() => handleClick("Log In")}

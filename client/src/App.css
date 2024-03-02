@@ -80,11 +80,6 @@
   align-self: center;
 }
 
-.auth-btns {
-  display: flex;
-  gap: 10px;
-}
-
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -175,7 +170,7 @@
   scale: 1.01;
 }
 
-.recipe-img {
+.recipe-card-img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 10px;
@@ -312,6 +307,132 @@
 .active-nav-btn {
   background-color: var(--orange);
   color: var(--white);
+}
+
+/* --------------------------------------------------------- */
+
+/* RECIPE DETAILS ------------------------------------------ */
+
+.recipe-detail-container {
+  grid-column: 1 / span 12;
+}
+
+.spacer {
+  grid-column: 1 / span 12;
+  display: flex;
+  gap: 20px;
+  height: fit-content;
+}
+
+.spacer > .col-1 {
+  width: 40%;
+  display: flex;
+}
+
+.spacer > .col-2 {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.servings-duration {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.duration img {
+  height: 20px;
+}
+
+.recipe-container {
+  grid-column: 1 / span 12;
+  display: flex;
+  gap: 20px;
+}
+
+.recipe-img-container {
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 15px;
+  width: 40%;
+  height: fit-content;
+  display: flex;
+}
+
+.recipe-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+  margin: 0;
+}
+
+.ingredients-details,
+.ingredients-method {
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 15px;
+  width: 60%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.ingredients-details > div > h2 {
+  text-align: right;
+  font-weight: 500;
+}
+
+.ingredients-details > p {
+  text-align: right;
+}
+
+.ingredients-details > h3 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.checkbox {
+  accent-color: var(--orange);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.checkbox:focus {
+  outline: none;
+}
+
+input[type="checkbox"]:checked {
+  color: var(--white);
+}
+
+.ingredients-method > h2 {
+  font-weight: 500;
+}
+
+.ingredients-method > div > h3 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.favourite-ingredients {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* --------------------------------------------------------- */

@@ -4,8 +4,9 @@ import FilterButtons from "./filter-buttons";
 import CategoryCarousel from "./category-carousel";
 import CategoryWrapped from "./category-wrapped";
 import { useStore } from "../../zustand/store";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getRecipes } from "../../services/api-service";
+import RecipeCard from "../../components/recipe-card";
 
 function Dashboard() {
   // VARIABLES:
@@ -14,6 +15,10 @@ function Dashboard() {
   const allRecipes = useStore((state) => state.recipes);
   const { addRecipes } = useStore(); // Populates the Zustand recipes array
   const filteredCategory = useStore((state) => state.filteredCategory);
+  const [query, setQuery] = useState("");
+  const searchedRecipes = allRecipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(query.toLowerCase()),
+  );
 
   // USE EFFECT:
   // Get all recipes on load and update recipes array in the Zustand store:
@@ -29,11 +34,13 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <Navbar />
-      <AddAndSearchBar />
+      <AddAndSearchBar query={query} setQuery={setQuery} />
       <FilterButtons />
       {
         // All Recipes button selected:
-        filteredCategory === "All Recipes" && allRecipes.length > 0 ? (
+        query.length === 0 &&
+        filteredCategory === "All Recipes" &&
+        allRecipes.length > 0 ? (
           <>
             <CategoryCarousel categoryTitle="Starters" />
             <CategoryCarousel categoryTitle="Mains" />
@@ -43,6 +50,7 @@ function Dashboard() {
             <CategoryCarousel categoryTitle="Drinks" />
           </>
         ) : (
+          query.length === 0 &&
           filteredCategory === "All Recipes" && (
             <h2>You have no recipes. Get cooking!</h2>
           )
@@ -51,8 +59,21 @@ function Dashboard() {
 
       {
         // Specific category button selected:
-        filteredCategory !== "All Recipes" && (
+        query.length === 0 && filteredCategory !== "All Recipes" && (
           <CategoryWrapped categoryTitle={`${filteredCategory}`} />
+        )
+      }
+
+      {
+        // Search results:
+        query.length > 0 ? (
+          <div className="category-wrapped-container">
+            {searchedRecipes.map((recipe, index) => (
+              <RecipeCard key={index} recipe={recipe} />
+            ))}
+          </div>
+        ) : (
+          ""
         )
       }
     </div>
