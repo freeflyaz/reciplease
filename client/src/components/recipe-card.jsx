@@ -23,7 +23,12 @@ function RecipeCard({ recipe }) {
   // RENDER:
   return (
     <div className="recipe-card">
-      <img src={recipe.imageUrl} alt="Recipe Photo" className="recipe-img" />
+      <img
+        src={recipe.imageUrl}
+        alt="Recipe Photo"
+        className="recipe-img"
+        onClick={() => navigate(`/recipe-detail/${recipe._id}`)}
+      />
       <div className="recipe-details">
         <div className="recipe-title-desc">
           <h3>{recipe.title}</h3>
