@@ -1,0 +1,328 @@
+.app {
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100vh;
+  padding: 0 140px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 16px;
+}
+
+/* NAVBAR -------------------------------------------------- */
+
+.navbar {
+  grid-column: 1 / span 12;
+
+  height: 150px;
+  margin-bottom: 50px;
+
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.navbar img {
+  width: 17rem;
+  cursor: pointer;
+}
+
+.reciplease-logo:hover {
+  animation-name: bounce;
+  animation-duration: 0.5s;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(25px) scale(1, 0.9);
+  }
+}
+
+/* --------------------------------------------------------- */
+
+/* AUTH PAGE ----------------------------------------------- */
+
+.auth-container {
+  grid-column: 1 / span 12;
+  padding: 50px 0;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 16px;
+
+  /* Background image: */
+  background-image: url("./assets/reciplease-splash-screen.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.auth-form-container {
+  grid-column: 5 / span 4;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-form-container img {
+  margin-bottom: 50px;
+  width: 17rem;
+  align-self: center;
+}
+
+.auth-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --------------------------------------------------------- */
+
+/* DASHBOARD ----------------------------------------------- */
+
+.dashboard-container {
+  grid-column: 1 / span 12;
+}
+
+.add-and-search-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.search-bar {
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+  border-radius: 3rem;
+  width: 50%;
+}
+
+.search-bar img {
+  height: 30px;
+}
+
+.search-bar input {
+  width: 100%;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.filter-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+/* --------------------------------------------------------- */
+
+/* RECIPE CAROUSEL ----------------------------------------- */
+
+.category-carousel-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  overflow-x: scroll;
+  margin-bottom: 50px;
+  padding: 5px;
+}
+
+.category-wrapped-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow-x: scroll;
+  margin-bottom: 50px;
+  padding: 5px;
+}
+
+.recipe-card {
+  width: 32.75%;
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+}
+
+.recipe-card:hover {
+  scale: 1.01;
+}
+
+.recipe-img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.recipe-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.favourite-icon {
+  height: 30px;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------- */
+
+/* CREATE RECIPE ------------------------------------------- */
+
+.create-recipe-container {
+  grid-column: 1 / span 12;
+}
+
+.create-recipe-container p {
+  color: var(--orange);
+  font-size: 1.875rem;
+  margin-bottom: 20px;
+}
+
+.create-recipe-container form {
+  justify-content: center;
+  background-color: var(--white);
+  width: fit-content;
+  margin: auto;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.create-recipe-container form input {
+  background-color: var(--blush);
+  width: 20rem;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
+}
+
+.create-recipe-container form select {
+  background-color: var(--blush);
+  min-height: 3rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
+}
+
+.create-recipe-container form textarea {
+  background-color: var(--blush);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
+}
+
+.create-recipe-form {
+  display: flex;
+  gap: 20px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ingredients,
+.method {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.ingredients button,
+.method button {
+  width: 20rem;
+}
+
+.add-ingredient-btn {
+  background-color: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+}
+
+.add-ingredient-btn:hover {
+  background-color: transparent;
+}
+
+.form-nav-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.form-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var();
+}
+
+.form-nav p {
+  font-size: 1rem;
+  color: var(--black);
+  margin: 0;
+}
+
+.form-nav-btn {
+  height: 30px;
+  width: 30px !important;
+  border-radius: 20px;
+  padding: 0;
+  background-color: var(--blush);
+  color: var(--orange);
+  box-shadow: none;
+}
+
+.form-nav-btn:hover {
+  color: var(--white);
+}
+
+.active-nav-btn {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+/* --------------------------------------------------------- */
+
+/* FOOTER -------------------------------------------------- */
+
+.footer {
+  grid-column: 1 / span 12;
+  text-align: center;
+  padding: 100px 0;
+  color: var(--white);
+}
+
+/* --------------------------------------------------------- */
