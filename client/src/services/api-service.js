@@ -32,9 +32,9 @@ export async function login(user) {
   }
 }
 
-export async function getRecipes(userID) {
+export async function getRecipes(userId) {
   try {
-    const res = await fetch(`${BASE_URL}/dashboard/${userID}`);
+    const res = await fetch(`${BASE_URL}/dashboard/${userId}`);
     return await res.json();
   } catch (error) {
     console.error(error);
@@ -68,6 +68,15 @@ export async function toggleFavouritedBy(recipeId, userId) {
       body: JSON.stringify(body),
     });
 
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getRecipeDetails(recipeId) {
+  try {
+    const res = await fetch(`${BASE_URL}/recipe-details/${recipeId}`);
     return await res.json();
   } catch (error) {
     console.error(error);
