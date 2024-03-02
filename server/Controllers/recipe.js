@@ -24,7 +24,7 @@ const addARecipe = async (req, res) => {
     user.recipes.push(recipe._id);
     user.save();
 
-    res.status(201).send(recipe);
+    res.status(201).send({ success: true, message: "Recipe created" });
   } catch (error) {
     res.status(400).send({ error, message: "Could not create recipe" });
   }
