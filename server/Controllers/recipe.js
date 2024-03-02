@@ -54,4 +54,21 @@ const toggleFavouritedUser = async (req, res) => {
   }
 };
 
-module.exports = { getRecipes, addARecipe, toggleFavouritedUser };
+const getRecipeDetails = async (req, res) => {
+  try {
+    // Find user and populate their recipes array:
+    const id = req.params.id;
+    const recipe = await recipeModel.findOne({ _id: id });
+
+    res.status(200).send(recipe);
+  } catch (error) {
+    res.status(404).send({ error, message: "Resource not found" });
+  }
+};
+
+module.exports = {
+  getRecipes,
+  addARecipe,
+  toggleFavouritedUser,
+  getRecipeDetails,
+};
