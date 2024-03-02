@@ -2,6 +2,7 @@ import { useStore } from "../zustand/store";
 import { toggleFavouritedBy } from "../services/api-service";
 import favouriteIconTrue from "../assets/favourite-true-icon.svg";
 import favouriteIconFalse from "../assets/favourite-false-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 function RecipeCard({ recipe }) {
   // VARIABLES:
@@ -11,6 +12,7 @@ function RecipeCard({ recipe }) {
   let favouriteRecipes = recipes.filter(
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
   );
+  const navigate = useNavigate();
 
   // FUNCTIONS:
   async function handleFavourite(recipeID, userID) {
