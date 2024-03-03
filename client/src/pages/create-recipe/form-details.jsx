@@ -1,7 +1,8 @@
 import FormNavigation from "./form-navigation";
 import { useStore } from "../../zustand/store";
+import UploadWidget from "./upload-widget";
 
-function FormDetails({ state, handleChange, setFormSection }) {
+function FormDetails({ state, setState, handleChange, setFormSection }) {
   const { updateActiveNavButton } = useStore();
 
   return (
@@ -12,14 +13,15 @@ function FormDetails({ state, handleChange, setFormSection }) {
           <FormNavigation setFormSection={setFormSection} />
           <div className="create-recipe-form">
             <div className="form-column 1">
-              <input
+              {/* <input
                 name="imageUrl"
                 type="text"
                 placeholder="Image URL"
                 value={state.imageUrl}
                 onChange={handleChange}
                 required
-              />
+              /> */}
+              <UploadWidget state={state} setState={setState} />
 
               <select
                 name="category"

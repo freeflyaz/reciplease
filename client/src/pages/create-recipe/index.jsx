@@ -79,6 +79,7 @@ function CreateRecipe() {
       {formSection === "Details" && (
         <FormDetails
           state={state}
+          setState={setState}
           handleChange={handleChange}
           setFormSection={setFormSection}
         />
