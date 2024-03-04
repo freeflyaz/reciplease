@@ -18,7 +18,7 @@ function RecipeCard({ recipe }) {
 
   // FUNCTIONS:
   async function handleFavourite() {
-    const res = await toggleFavouritedBy(recipe._id, userID); // recipeID and userID coming 'inpurely' from outer scope...
+    const res = await toggleFavouritedBy(recipe._id, userID); // recipeID and userID coming 'impurely' from outer scope...
     updateOneRecipe(res); // Updates the Zustand recipes array to reflect favourite status
   }
 

@@ -3,8 +3,10 @@ import { useStore } from "../../zustand/store";
 import UploadWidget from "./upload-widget";
 
 function FormDetails({ state, setState, handleChange, setFormSection }) {
+  // ZUSTAND:
   const { updateActiveNavButton } = useStore();
 
+  // RENDER:
   return (
     <div className="create-recipe-form">
       <form>

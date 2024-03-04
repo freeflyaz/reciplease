@@ -2,12 +2,16 @@ import FormNavigation from "./form-navigation";
 import { useStore } from "../../zustand/store";
 
 function FormIngredients({ state, setState, setFormSection }) {
+  // ZUSTAND:
   const { updateActiveNavButton } = useStore();
 
+  // FUNCTIONS:
+  // Update initial form state with ingredients
   const handleAddIngredient = () => {
     setState({ ...state, ingredients: [...state.ingredients, ""] });
   };
 
+  // Track ingredients in the initial form state:
   const handleIngredientChange = (event, index) => {
     const { value } = event.target;
     const ingredients = state.ingredients;
@@ -15,6 +19,7 @@ function FormIngredients({ state, setState, setFormSection }) {
     setState({ ...state, ingredients: ingredients });
   };
 
+  // RENDER:
   return (
     <>
       <div className="create-recipe-form">

@@ -11,6 +11,8 @@ const initialLoginData = {
 function LogInForm() {
   // STATES:
   const [loginData, setLoginData] = useState(initialLoginData);
+
+  // VARIABLES:
   const navigate = useNavigate();
 
   // FUNCTIONS:

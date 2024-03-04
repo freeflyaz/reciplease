@@ -1,10 +1,13 @@
 import FormNavigation from "./form-navigation";
 
 function FormMethod({ state, setState, setFormSection, handleSubmit }) {
+  // FUNCTIONS:
+  // Update initial form state with steps
   const handleAddStep = () => {
     setState({ ...state, method: [...state.method, ""] });
   };
 
+  // Track steps in the initial form state:
   const handleStepChange = (event, index) => {
     const { value } = event.target;
     const method = state.method;
@@ -12,6 +15,7 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
     setState({ ...state, method: method });
   };
 
+  // RENDER:
   return (
     <div className="create-recipe-form">
       <form onSubmit={handleSubmit}>

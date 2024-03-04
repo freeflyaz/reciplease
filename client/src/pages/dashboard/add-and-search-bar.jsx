@@ -2,6 +2,7 @@ import searchIcon from "../../assets/search-icon.svg";
 import { useNavigate } from "react-router-dom";
 
 function AddAndSearchBar({ query, setQuery }) {
+  // VARIABLES:
   const navigate = useNavigate();
 
   // RENDER:

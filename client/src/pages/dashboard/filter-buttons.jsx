@@ -4,6 +4,8 @@ import { useStore } from "../../zustand/store";
 function FilterButtons() {
   // STATES:
   let [selectedButton, setSelectedButton] = useState("All Recipes");
+
+  // ZUSTAND:
   const { updatefilteredCategory } = useStore(); // Updates the Zustand filteredCategory value
 
   // FUNCTIONS:

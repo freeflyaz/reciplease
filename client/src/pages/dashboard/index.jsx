@@ -9,18 +9,21 @@ import { getRecipes } from "../../services/api-service";
 import RecipeCard from "../../components/recipe-card";
 
 function Dashboard() {
-  // VARIABLES:
-  // userID, recipes array and filteredCategory from Zustand store:
+  // STATES:
+  const [query, setQuery] = useState("");
+
+  // ZUSTAND:
   const userID = useStore((state) => state.userID);
   const allRecipes = useStore((state) => state.recipes);
   const filteredCategory = useStore((state) => state.filteredCategory);
   const { addRecipes } = useStore(); // Populates the Zustand recipes array
-  const [query, setQuery] = useState("");
+
+  // VARIABLES:
   const searchedRecipes = allRecipes.filter((recipe) =>
     recipe.title.toLowerCase().includes(query.toLowerCase()),
   );
 
-  // USE EFFECT:
+  // USE EFFECTS:
   // Get all recipes on load and update recipes array in the Zustand store:
   useEffect(() => {
     async function getRecipesArr(userID) {
@@ -31,53 +34,54 @@ function Dashboard() {
   }, []);
 
   // RENDER:
-  return (
-    <div className="dashboard-container">
-      <Navbar />
-      <AddAndSearchBar query={query} setQuery={setQuery} />
-      <FilterButtons />
-      {
-        // All Recipes button selected:
-        query.length === 0 &&
-        filteredCategory === "All Recipes" &&
-        allRecipes.length > 0 ? (
-          <>
-            <CategoryCarousel categoryTitle="Starters" />
-            <CategoryCarousel categoryTitle="Mains" />
-            <CategoryCarousel categoryTitle="Sides" />
-            <CategoryCarousel categoryTitle="Desserts" />
-            <CategoryCarousel categoryTitle="Bakery" />
-            <CategoryCarousel categoryTitle="Drinks" />
-          </>
-        ) : (
+  if (allRecipes.length > 0) {
+    return (
+      <div className="dashboard-container">
+        <Navbar />
+        <AddAndSearchBar query={query} setQuery={setQuery} />
+        <FilterButtons />
+        {
+          // All Recipes button selected:
           query.length === 0 &&
-          filteredCategory === "All Recipes" && (
-            <h2>You have no recipes. Get cooking!</h2>
+          filteredCategory === "All Recipes" ? (
+            <>
+              <CategoryCarousel categoryTitle="Starters" />
+              <CategoryCarousel categoryTitle="Mains" />
+              <CategoryCarousel categoryTitle="Sides" />
+              <CategoryCarousel categoryTitle="Desserts" />
+              <CategoryCarousel categoryTitle="Bakery" />
+              <CategoryCarousel categoryTitle="Drinks" />
+            </>
+          ) : (
+            query.length === 0 &&
+            filteredCategory === "All Recipes" && (
+              <h2>You have no recipes. Get cooking!</h2>
+            )
           )
-        )
-      }
+        }
 
-      {
-        // Specific category button selected:
-        query.length === 0 && filteredCategory !== "All Recipes" && (
-          <CategoryWrapped categoryTitle={`${filteredCategory}`} />
-        )
-      }
+        {
+          // Specific category button selected:
+          query.length === 0 && filteredCategory !== "All Recipes" && (
+            <CategoryWrapped categoryTitle={`${filteredCategory}`} />
+          )
+        }
 
-      {
-        // Search results:
-        query.length > 0 ? (
-          <div className="category-wrapped-container">
-            {searchedRecipes.map((recipe, index) => (
-              <RecipeCard key={index} recipe={recipe} />
-            ))}
-          </div>
-        ) : (
-          ""
-        )
-      }
-    </div>
-  );
+        {
+          // Search results:
+          query.length > 0 ? (
+            <div className="category-wrapped-container">
+              {searchedRecipes.map((recipe, index) => (
+                <RecipeCard key={index} recipe={recipe} />
+              ))}
+            </div>
+          ) : (
+            ""
+          )
+        }
+      </div>
+    );
+  }
 }
 
 export default Dashboard;

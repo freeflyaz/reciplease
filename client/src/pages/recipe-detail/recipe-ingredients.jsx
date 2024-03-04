@@ -4,14 +4,13 @@ import favouriteIconTrue from "../../assets/favourite-true-icon.svg";
 import favouriteIconFalse from "../../assets/favourite-false-icon.svg";
 
 function RecipeIngredients({ recipeDetail }) {
-  // ZUSTAND VARIABLES:
+  // ZUSTAND:
   const userID = useStore((state) => state.userID);
-  // const recipes = useStore((state) => state.recipes);
   const updateOneRecipe = useStore((state) => state.updateOneRecipe);
 
   // FUNCTIONS:
   async function handleFavourite() {
-    const res = await toggleFavouritedBy(recipeDetail._id, userID); // recipeID and userID coming 'inpurely' from outer scope...
+    const res = await toggleFavouritedBy(recipeDetail._id, userID); // recipeID and userID coming 'impurely' from outer scope...
     updateOneRecipe(res); // Updates the Zustand recipes array to reflect favourite status
   }
 
@@ -55,8 +54,6 @@ function RecipeIngredients({ recipeDetail }) {
         </div>
       </div>
     );
-  } else {
-    return <div>Loading...</div>;
   }
 }
 export default RecipeIngredients;

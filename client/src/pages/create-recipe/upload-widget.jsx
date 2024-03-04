@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 function UploadWidget({ setState }) {
   // STATES:
   let [buttonState, setButtonState] = useState("Not uploaded");
+
+  // USE REFS:
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 

@@ -24,7 +24,11 @@ function CreateRecipe() {
   // STATES:
   const [state, setState] = useState(initialState);
   const [formSection, setFormSection] = useState("Details");
+
+  // ZUSTAND:
   const { updateActiveNavButton } = useStore();
+
+  // VARIABLES:
   const navigate = useNavigate();
 
   // FUNCTIONS:

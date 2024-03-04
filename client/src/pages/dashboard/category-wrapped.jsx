@@ -2,11 +2,11 @@ import RecipeCard from "../../components/recipe-card";
 import { useStore } from "../../zustand/store";
 
 function CategoryWrapped({ categoryTitle }) {
-  // VARIABLES:
-  // userID and recipes array from the Zustand store:
+  // ZUSTAND:
   const userID = useStore((state) => state.userID);
   const recipes = useStore((state) => state.recipes);
-  // Filter them to match the carousel's category:and filter them to match the carousel's category:
+
+  // VARIABLES
   const recipesByCategory = recipes.length
     ? recipes.filter((recipe) => recipe.category === categoryTitle)
     : [];
@@ -14,6 +14,7 @@ function CategoryWrapped({ categoryTitle }) {
     ? recipes.filter((recipe) => recipe.favouritedBy.indexOf(userID) !== -1)
     : [];
 
+  // RENDER:
   return (
     <>
       {categoryTitle !== "Favourites" && recipesByCategory.length === 0 ? (
