@@ -10,13 +10,13 @@ const initialState = {
 
 function RegisterForm() {
   // STATES:
-  const [state, setState] = useState(initialState);
+  const [registerDetails, setRegisterDetails] = useState(initialState);
 
   // FUNCTIONS:
   // Update form's inputs' values:
   function handleChange(e) {
     const { name, value } = e.target;
-    setState((prevState) => ({
+    setRegisterDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -28,22 +28,27 @@ function RegisterForm() {
   // Success pop-up if user's details are accepted:
   const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
 
+  // Reset form:
+  function resetForm() {
+    setRegisterDetails({
+      firstName: "",
+      email: "",
+      password: "",
+    });
+  }
+
   // On submit, send details to the server:
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const { firstName, email, password } = state;
+    const { firstName, email, password } = registerDetails;
     const user = { firstName, email, password };
     const res = await register(user);
     const { success, message } = res;
 
     if (success) {
       handleSuccess(`Welcome Chef ${firstName}! Please log in.`);
-      setState({
-        firstName: "",
-        email: "",
-        password: "",
-      });
+      resetForm();
     } else {
       handleError(message);
     }
@@ -57,7 +62,7 @@ function RegisterForm() {
           name="firstName"
           type="text"
           placeholder="First Name"
-          value={state.firstName}
+          value={registerDetails.firstName}
           onChange={handleChange}
           required
         />
@@ -65,7 +70,7 @@ function RegisterForm() {
           name="email"
           type="text"
           placeholder="Email"
-          value={state.email}
+          value={registerDetails.email}
           onChange={handleChange}
           required
         />
@@ -74,7 +79,7 @@ function RegisterForm() {
           type="password"
           placeholder="Password"
           autoComplete="on"
-          value={state.password}
+          value={registerDetails.password}
           onChange={handleChange}
           required
         />

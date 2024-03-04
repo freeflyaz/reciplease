@@ -101,7 +101,7 @@ button {
 }
 
 .uploaded {
-  background-color: #1f4e43;
+  background-color: #3bc063;
   border: none;
 }
 
@@ -137,10 +137,6 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: 1px solid var(--orange);
-}
-
-select {
-  /* appearance: none; */
 }
 
 /* -------------------------------------------------------------- */

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 function UploadWidget({ setState }) {
   // STATES:
-  let [buttonState, setButtonState] = useState("Not uploaded");
+  let [isUploaded, setIsUploaded] = useState(false);
 
   // USE REFS:
   const cloudinaryRef = useRef();
@@ -21,12 +21,14 @@ function UploadWidget({ setState }) {
         if (error) {
           console.error(error);
         } else {
-          if (result.event === "success")
+          console.log(result);
+          if (result.event === "success") {
             setState((prevState) => ({
               ...prevState,
               imageUrl: result.info.secure_url,
             }));
-          setButtonState("Uploaded");
+            setIsUploaded(true);
+          }
         }
       },
     );
@@ -35,12 +37,10 @@ function UploadWidget({ setState }) {
   // RENDER:
   return (
     <button
-      className={
-        buttonState === "Not Uploaded" ? "no-fill-btn" : "no-fill-btn uploaded"
-      }
+      className={isUploaded ? "uploaded" : "no-fill-btn"}
       onClick={() => widgetRef.current.open()}
     >
-      Upload Recipe Photo
+      {isUploaded ? "Photo Uploaded" : "Upload Recipe Photo"}
     </button>
   );
 }

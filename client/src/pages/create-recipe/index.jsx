@@ -47,6 +47,11 @@ function CreateRecipe() {
     }));
   }
 
+  // Reset form:
+  function resetFormState() {
+    setState(initialState);
+  }
+
   // Submit form to server:
   async function handleSubmit(e) {
     e.preventDefault();
@@ -56,17 +61,7 @@ function CreateRecipe() {
 
     if (success) {
       handleSuccess("Recipe created! Redirecting to your dashboard...");
-      setState({
-        title: "",
-        shortDescription: "",
-        longDescription: "",
-        imageUrl: "",
-        category: "Mains",
-        servings: "",
-        duration: "",
-        ingredients: [],
-        method: [],
-      });
+      resetFormState();
       setFormSection("Details");
       updateActiveNavButton(1);
       setTimeout(() => {

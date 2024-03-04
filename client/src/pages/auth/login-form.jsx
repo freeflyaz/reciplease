@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { login } from "../../services/api-service";
+import { useStore } from "../../zustand/store";
 import { useNavigate } from "react-router-dom";
+import { login } from "../../services/api-service";
 import { ToastContainer, toast } from "react-toastify";
 
 const initialLoginData = {
@@ -11,6 +12,9 @@ const initialLoginData = {
 function LogInForm() {
   // STATES:
   const [loginData, setLoginData] = useState(initialLoginData);
+
+  // ZUSTAND:
+  const { updateUserID } = useStore();
 
   // VARIABLES:
   const navigate = useNavigate();
@@ -31,6 +35,14 @@ function LogInForm() {
   // Success pop-up if user's details are accepted:
   const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
 
+  // Reset form:
+  function resetForm() {
+    setLoginData({
+      email: "",
+      password: "",
+    });
+  }
+
   // On submit, send details to the server:
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,10 +54,8 @@ function LogInForm() {
       handleSuccess(
         `Welcome back Chef ${user.firstName}! Let's get cooking...`,
       );
-      setLoginData({
-        email: "",
-        password: "",
-      });
+      resetForm();
+      updateUserID(user._id);
       setTimeout(() => navigate("/dashboard"), 2000);
     } else {
       handleError(message);
