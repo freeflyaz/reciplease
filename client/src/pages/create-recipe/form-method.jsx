@@ -21,7 +21,7 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
           <div className="create-recipe-form">
             <div className="method">
               {state.method.map((step, index) => (
-                <input
+                <textarea
                   key={index}
                   type="text"
                   name="method"
@@ -34,10 +34,10 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
 
               <button
                 type="button"
-                className="add-ingredient-btn"
+                className="no-fill-btn"
                 onClick={handleAddStep}
               >
-                Add Step
+                Add a Step
               </button>
               <button type="submit">Submit Recipe</button>
             </div>

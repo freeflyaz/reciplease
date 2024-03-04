@@ -260,16 +260,6 @@
   width: 20rem;
 }
 
-.add-ingredient-btn {
-  background-color: transparent;
-  border: 1px solid var(--orange);
-  color: var(--orange);
-}
-
-.add-ingredient-btn:hover {
-  background-color: transparent;
-}
-
 .form-nav-container {
   display: flex;
   flex-direction: column;

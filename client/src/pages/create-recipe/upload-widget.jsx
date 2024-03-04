@@ -15,7 +15,7 @@ function UploadWidget({ state, setState }) {
         if (error) {
           console.error(error);
         } else {
-          if (result.info.secure_url)
+          if (result.event === "success")
             setState((state) => ({
               ...state,
               imageUrl: result.info.secure_url,
@@ -26,7 +26,7 @@ function UploadWidget({ state, setState }) {
   }, []);
 
   return (
-    <button onClick={() => widgetRef.current.open()}>
+    <button className="no-fill-btn" onClick={() => widgetRef.current.open()}>
       Upload Recipe Photo
     </button>
   );

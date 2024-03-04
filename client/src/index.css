@@ -90,6 +90,16 @@ button {
   gap: 10px;
 }
 
+.no-fill-btn {
+  background-color: transparent;
+  border: 1px solid var(--orange);
+  color: var(--orange);
+}
+
+.no-fill-btn:hover {
+  background-color: var(--blush);
+}
+
 /* -------------------------------------------------------------- */
 
 /* FORM STYLING ------------------------------------------------- */
@@ -115,18 +125,17 @@ form button:hover {
 
 textarea {
   resize: vertical;
+  width: 100%;
 }
 
-input:focus {
-  outline: 1px solid var(--orange);
-}
-
-select:focus {
-  outline: 1px solid var(--orange);
-}
-
+input:focus,
+select:focus,
 textarea:focus {
   outline: 1px solid var(--orange);
+}
+
+select {
+  /* appearance: none; */
 }
 
 /* -------------------------------------------------------------- */
