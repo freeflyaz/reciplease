@@ -82,3 +82,14 @@ export async function getRecipeDetails(recipeId) {
     console.error(error);
   }
 }
+
+export async function deleteRecipe(userId, recipeId) {
+  try {
+    const res = await fetch(`${BASE_URL}/delete-recipe/${userId}/${recipeId}`, {
+      method: "DELETE",
+    });
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+}

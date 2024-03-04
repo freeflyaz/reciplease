@@ -184,8 +184,14 @@
   margin-bottom: 10px;
 }
 
-.favourite-icon {
-  height: 30px;
+.favourite-delete-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.favourite-delete-icons > img {
+  width: 30px;
   cursor: pointer;
 }
 
@@ -413,6 +419,12 @@ input[type="checkbox"]:checked {
 .favourite-ingredients {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.favourite-icon {
+  width: 30px;
+  cursor: pointer;
 }
 
 /* --------------------------------------------------------- */

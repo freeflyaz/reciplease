@@ -66,9 +66,36 @@ const getRecipeDetails = async (req, res) => {
   }
 };
 
+const deleteRecipe = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const recipeId = req.params.recipeId;
+
+    // Delete recipe from recipes collection:
+    const response = await recipeModel.deleteOne({ _id: recipeId });
+
+    if (response.deletedCount === 1) {
+      // Update recipes array in user collection:
+      const user = await userModel.findOne({ _id: userId });
+      const index = user.recipes.indexOf(recipeId);
+
+      if (index !== -1) {
+        user.recipes.splice(index, 1);
+        user.save();
+      }
+    }
+
+    res.status(200).send({ success: true, message: "Recipe deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error, message: "Could not delete recipe" });
+  }
+};
+
 module.exports = {
   getRecipes,
   addARecipe,
   toggleFavouritedUser,
   getRecipeDetails,
+  deleteRecipe,
 };

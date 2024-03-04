@@ -12,5 +12,9 @@ router.get("/dashboard/:id", recipeController.getRecipes);
 router.post("/create-recipe", recipeController.addARecipe);
 router.post("/favourite-recipe", recipeController.toggleFavouritedUser);
 router.get("/recipe-details/:id", recipeController.getRecipeDetails);
+router.delete(
+  "/delete-recipe/:userId/:recipeId",
+  recipeController.deleteRecipe,
+);
 
 module.exports = router;
