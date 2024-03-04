@@ -43,6 +43,7 @@ function CreateRecipe() {
     }));
   }
 
+  // Submit form to server:
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -74,7 +75,7 @@ function CreateRecipe() {
 
   // RENDER:
   return (
-    <>
+    <div className="create-recipe-container">
       <Navbar />
       {formSection === "Details" && (
         <FormDetails
@@ -106,7 +107,7 @@ function CreateRecipe() {
         autoClose={5000}
         hideProgressBar={true}
       />
-    </>
+    </div>
   );
 }
 

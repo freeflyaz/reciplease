@@ -197,46 +197,36 @@
   grid-column: 1 / span 12;
 }
 
-.create-recipe-container p {
-  color: var(--orange);
-  font-size: 1.875rem;
-  margin-bottom: 20px;
-}
-
-.create-recipe-container form {
-  justify-content: center;
+.create-recipe-form {
   background-color: var(--white);
-  width: fit-content;
+  width: 65%;
   margin: auto;
   padding: 20px;
   border-radius: 15px;
 }
 
-.create-recipe-container form input {
-  background-color: var(--blush);
-  width: 20rem;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
-}
-
-.create-recipe-container form select {
-  background-color: var(--blush);
-  min-height: 3rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
-}
-
-.create-recipe-container form textarea {
-  background-color: var(--blush);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05);
-}
-
-.create-recipe-form {
+.create-recipe-form form {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-recipe-form h2 {
+  color: var(--orange);
+  font-size: 1.875rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.create-recipe-form-details {
+  display: flex;
+  gap: 20px;
+}
+
+.create-recipe-form-ingredients,
+.create-recipe-form-method {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
@@ -244,50 +234,28 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.ingredients,
-.method {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-}
-
-.ingredients button,
-.method button {
-  width: 20rem;
+  width: 50%;
 }
 
 .form-nav-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 1rem 0;
 }
 
 .form-nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: var();
-}
-
-.form-nav p {
-  font-size: 1rem;
-  color: var(--black);
-  margin: 0;
 }
 
 .form-nav-btn {
   height: 30px;
-  width: 30px !important;
-  border-radius: 20px;
+  width: 30px;
+  border-radius: 15px;
   padding: 0;
   background-color: var(--blush);
   color: var(--orange);
-  box-shadow: none;
 }
 
 .form-nav-btn:hover {
@@ -297,6 +265,20 @@
 .active-nav-btn {
   background-color: var(--orange);
   color: var(--white);
+}
+
+.create-recipe-container form input,
+select,
+textarea {
+  background-color: var(--blush);
+  border-radius: 0.5rem;
+}
+
+.create-recipe-container form select,
+textarea {
+  min-height: 3rem;
+  padding: 1rem;
+  border: none;
 }
 
 /* --------------------------------------------------------- */

@@ -17,6 +17,7 @@ function App() {
           <Route path="/create-recipe" element={<CreateRecipe />} />
         </Routes>
       </Router>
+      <p className="footer">© 2024 Reciplease. All rights reserved.</p>
     </div>
   );
 }

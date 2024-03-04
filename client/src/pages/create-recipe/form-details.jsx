@@ -6,98 +6,90 @@ function FormDetails({ state, setState, handleChange, setFormSection }) {
   const { updateActiveNavButton } = useStore();
 
   return (
-    <>
-      <div className="create-recipe-container details">
-        <form>
-          <p>What's on the menu, Chef?</p>
-          <FormNavigation setFormSection={setFormSection} />
-          <div className="create-recipe-form">
-            <div className="form-column 1">
-              {/* <input
-                name="imageUrl"
-                type="text"
-                placeholder="Image URL"
-                value={state.imageUrl}
-                onChange={handleChange}
-                required
-              /> */}
-              <UploadWidget state={state} setState={setState} />
+    <div className="create-recipe-form">
+      <form>
+        <h2>What's on the menu, Chef?</h2>
+        <FormNavigation setFormSection={setFormSection} />
+        <div className="create-recipe-form-details">
+          <div className="form-column">
+            <UploadWidget state={state} setState={setState} />
 
-              <select
-                name="category"
-                value={state.category}
-                onChange={handleChange}
-              >
-                <option value="Starters">Starter</option>
-                <option value="Mains">Main</option>
-                <option value="Sides">Side</option>
-                <option value="Desserts">Dessert</option>
-                <option value="Bakery">Bakery</option>
-                <option value="Drinks">Drink</option>
-              </select>
+            <select
+              name="category"
+              value={state.category}
+              onChange={handleChange}
+            >
+              <option value="Starters">Starter</option>
+              <option value="Mains">Main</option>
+              <option value="Sides">Side</option>
+              <option value="Desserts">Dessert</option>
+              <option value="Bakery">Bakery</option>
+              <option value="Drinks">Drink</option>
+            </select>
 
-              <input
-                name="servings"
-                type="number"
-                placeholder="Number of servings"
-                value={state.servings}
-                onChange={handleChange}
-                required
-              />
+            <input
+              name="servings"
+              type="number"
+              placeholder="Number of servings"
+              min={1}
+              value={state.servings}
+              onChange={handleChange}
+              required
+            />
 
-              <input
-                name="duration"
-                type="number"
-                placeholder="Duration (in minutes)"
-                value={state.duration}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-column 2">
-              <input
-                name="title"
-                type="text"
-                placeholder="Recipe Title"
-                maxLength={70}
-                value={state.title}
-                onChange={handleChange}
-                required
-              />
-
-              <input
-                name="shortDescription"
-                type="text"
-                placeholder="Recipe Short Description"
-                maxLength={70}
-                value={state.shortDescription}
-                onChange={handleChange}
-                required
-              />
-
-              <textarea
-                name="longDescription"
-                placeholder="Recipe Long Description"
-                value={state.longDescription}
-                onChange={handleChange}
-                required
-              />
-
-              <button
-                type="button"
-                onClick={() => {
-                  setFormSection("Ingredients");
-                  updateActiveNavButton(2);
-                }}
-              >
-                Next
-              </button>
-            </div>
+            <input
+              name="duration"
+              type="number"
+              placeholder="Duration (in minutes)"
+              min={1}
+              value={state.duration}
+              onChange={handleChange}
+              required
+            />
           </div>
-        </form>
-      </div>
-    </>
+
+          <div className="form-column">
+            <input
+              name="title"
+              type="text"
+              placeholder="Recipe Title"
+              maxLength={70}
+              value={state.title}
+              onChange={handleChange}
+              required
+            />
+
+            <input
+              name="shortDescription"
+              type="text"
+              placeholder="Recipe Short Description"
+              maxLength={70}
+              value={state.shortDescription}
+              onChange={handleChange}
+              required
+            />
+
+            <textarea
+              name="longDescription"
+              placeholder="Recipe Long Description"
+              value={state.longDescription}
+              onChange={handleChange}
+              required
+            />
+
+            <button
+              type="button"
+              onClick={() => {
+                setFormSection("Ingredients");
+                updateActiveNavButton(2);
+              }}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }
 

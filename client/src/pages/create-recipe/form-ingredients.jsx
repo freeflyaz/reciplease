@@ -17,42 +17,40 @@ function FormIngredients({ state, setState, setFormSection }) {
 
   return (
     <>
-      <div className="create-recipe-container ingredients">
+      <div className="create-recipe-form">
         <form>
-          <p>What are the ingredients, Chef?</p>
-          <FormNavigation />
-          <div className="create-recipe-form">
-            <div className="ingredients">
-              {state.ingredients.map((ingredient, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  name="ingredients"
-                  placeholder="Add ingredient here"
-                  maxLength={50}
-                  value={ingredient}
-                  onChange={(event) => handleIngredientChange(event, index)}
-                  required
-                />
-              ))}
+          <h2>What are the ingredients, Chef?</h2>
+          <FormNavigation setFormSection={setFormSection} />
+          <div className="create-recipe-form-ingredients">
+            {state.ingredients.map((ingredient, index) => (
+              <input
+                key={index}
+                type="text"
+                name="ingredients"
+                placeholder="Add ingredient here"
+                maxLength={50}
+                value={ingredient}
+                onChange={(event) => handleIngredientChange(event, index)}
+                required
+              />
+            ))}
 
-              <button
-                type="button"
-                className="no-fill-btn"
-                onClick={handleAddIngredient}
-              >
-                Add an Ingredient
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setFormSection("Method");
-                  updateActiveNavButton(3);
-                }}
-              >
-                Next
-              </button>
-            </div>
+            <button
+              type="button"
+              className="no-fill-btn"
+              onClick={handleAddIngredient}
+            >
+              Add an Ingredient
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setFormSection("Method");
+                updateActiveNavButton(3);
+              }}
+            >
+              Next
+            </button>
           </div>
         </form>
       </div>

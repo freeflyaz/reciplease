@@ -1,6 +1,6 @@
 import { useStore } from "../../zustand/store";
 
-function FormNavigation({ setFormSection }) {
+function FormNavigation({ formSection, setFormSection }) {
   const activeNavButton = useStore((state) => state.activeNavButton);
   const { updateActiveNavButton } = useStore();
 

@@ -13,38 +13,30 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
   };
 
   return (
-    <>
-      <div className="create-recipe-container method">
-        <form onSubmit={handleSubmit}>
-          <p>How do you make it, Chef?</p>
-          <FormNavigation setFormSection={setFormSection} />
-          <div className="create-recipe-form">
-            <div className="method">
-              {state.method.map((step, index) => (
-                <textarea
-                  key={index}
-                  type="text"
-                  name="method"
-                  placeholder="Add step here"
-                  value={step}
-                  onChange={(event) => handleStepChange(event, index)}
-                  required
-                />
-              ))}
+    <div className="create-recipe-form">
+      <form onSubmit={handleSubmit}>
+        <h2>How do you make it, Chef?</h2>
+        <FormNavigation setFormSection={setFormSection} />
+        <div className="create-recipe-form-method">
+          {state.method.map((step, index) => (
+            <textarea
+              key={index}
+              type="text"
+              name="method"
+              placeholder="Add step here"
+              value={step}
+              onChange={(event) => handleStepChange(event, index)}
+              required
+            />
+          ))}
 
-              <button
-                type="button"
-                className="no-fill-btn"
-                onClick={handleAddStep}
-              >
-                Add a Step
-              </button>
-              <button type="submit">Submit Recipe</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </>
+          <button type="button" className="no-fill-btn" onClick={handleAddStep}>
+            Add a Step
+          </button>
+          <button type="submit">Submit Recipe</button>
+        </div>
+      </form>
+    </div>
   );
 }
 
