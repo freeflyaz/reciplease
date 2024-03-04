@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function UploadWidget({ state, setState }) {
+function UploadWidget({ setState }) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
@@ -10,14 +10,15 @@ function UploadWidget({ state, setState }) {
       {
         cloudName: "dz1qipahy",
         uploadPreset: "nrvaimia",
+        sources: ["local", "url", "camera"],
       },
       function (error, result) {
         if (error) {
           console.error(error);
         } else {
           if (result.event === "success")
-            setState((state) => ({
-              ...state,
+            setState((prevState) => ({
+              ...prevState,
               imageUrl: result.info.secure_url,
             }));
         }

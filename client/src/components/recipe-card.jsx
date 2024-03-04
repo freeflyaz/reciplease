@@ -13,6 +13,7 @@ function RecipeCard({ recipe }) {
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
   );
   const navigate = useNavigate();
+  const { updatefilteredCategory } = useStore(); // Updates the Zustand filteredCategory value
 
   // FUNCTIONS:
   async function handleFavourite(recipeID, userID) {
@@ -27,7 +28,10 @@ function RecipeCard({ recipe }) {
         src={recipe.imageUrl}
         alt="Recipe Photo"
         className="recipe-card-img"
-        onClick={() => navigate(`/recipe-detail/${recipe._id}`)}
+        onClick={() => {
+          navigate(`/recipe-detail/${recipe._id}`);
+          updatefilteredCategory("All Recipes");
+        }}
       />
       <div className="recipe-details">
         <div className="recipe-title-desc">

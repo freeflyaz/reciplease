@@ -26,17 +26,27 @@ function LogInForm() {
   // Error pop-up if user's details are incorrect:
   const handleError = (err) => toast.error(err, { position: "top-right" });
 
+  // Success pop-up if user's details are accepted:
+  const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
+
   // On submit, send details to the server:
   async function handleSubmit(e) {
     e.preventDefault();
 
     const { email, password } = state;
-    const user = { email, password };
-    const res = await login(user);
-    const { success, message } = res;
+    const userDetails = { email, password };
+    const res = await login(userDetails);
+    const { success, message, user } = res;
 
     if (success) {
-      navigate("/dashboard");
+      handleSuccess(
+        `Welcome back Chef ${user.firstName}! Let's get cooking...`,
+      );
+      setState({
+        email: "",
+        password: "",
+      });
+      setTimeout(() => navigate("/dashboard"), 2000);
     } else {
       handleError(message);
     }

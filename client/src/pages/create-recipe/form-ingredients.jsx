@@ -25,8 +25,8 @@ function FormIngredients({ state, setState, setFormSection }) {
             {state.ingredients.map((ingredient, index) => (
               <input
                 key={index}
-                type="text"
                 name="ingredients"
+                type="text"
                 placeholder="Add ingredient here"
                 maxLength={50}
                 value={ingredient}

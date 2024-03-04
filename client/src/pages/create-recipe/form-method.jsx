@@ -21,8 +21,8 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
           {state.method.map((step, index) => (
             <textarea
               key={index}
-              type="text"
               name="method"
+              type="text"
               placeholder="Add step here"
               value={step}
               onChange={(event) => handleStepChange(event, index)}

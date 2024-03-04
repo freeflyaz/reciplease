@@ -38,7 +38,7 @@ function RegisterForm() {
     const { success, message } = res;
 
     if (success) {
-      handleSuccess("Welcome chef! Please log in.");
+      handleSuccess(`Welcome Chef ${firstName}! Please log in.`);
       setState({
         firstName: "",
         email: "",
