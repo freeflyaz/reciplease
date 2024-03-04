@@ -5,12 +5,24 @@ const getRecipes = async (req, res) => {
   try {
     // Find user and populate their recipes array:
     const id = req.params.id;
-    const user = await userModel.findOne({ _id: id });
-    userWithRecipes = await user.populate("recipes");
 
-    res.status(200).send(userWithRecipes.recipes);
+    if (!id) {
+      res.status(400).json({ data: null, message: "Valid ID required" });
+    }
+
+    const user = await userModel.findOne({ _id: id }).populate("recipes");
+
+    if (!user) {
+      res.status(400).json({ data: null, message: "No user for this Id." });
+    }
+
+    res.status(200).send({
+      data: user.recipes,
+      message: "Successfully retrieved recipes for user",
+    });
   } catch (error) {
-    res.status(404).send({ error, message: "Resource not found" });
+    console.log(error);
+    res.status(500).send({ data: null, message: "Resource not found" });
   }
 };
 
@@ -41,7 +53,6 @@ const toggleFavouritedUser = async (req, res) => {
     if (recipe.favouritedBy.includes(req.body.userId)) {
       const index = recipe.favouritedBy.indexOf(req.body.userId);
       recipe.favouritedBy.splice(index, 1);
-      console.log(recipe.favouritedBy);
       recipe.save();
       res.status(201).send(recipe);
     } else {
@@ -51,18 +62,6 @@ const toggleFavouritedUser = async (req, res) => {
     }
   } catch (error) {
     res.status(400).send({ error, message: "Could not favourite recipe" });
-  }
-};
-
-const getRecipeDetails = async (req, res) => {
-  try {
-    // Find user and populate their recipes array:
-    const id = req.params.id;
-    const recipe = await recipeModel.findOne({ _id: id });
-
-    res.status(200).send(recipe);
-  } catch (error) {
-    res.status(404).send({ error, message: "Resource not found" });
   }
 };
 
@@ -96,6 +95,5 @@ module.exports = {
   getRecipes,
   addARecipe,
   toggleFavouritedUser,
-  getRecipeDetails,
   deleteRecipe,
 };

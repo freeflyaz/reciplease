@@ -5,7 +5,14 @@ export const useStore = create((set) => ({
 
   recipes: [],
   addRecipes: (recipes) => set((state) => ({ ...state, recipes })),
-  updateRecipes: (recipe) =>
+  removeOneRecipe: (recipeID) =>
+    set((state) => {
+      const updatedRecipes = state.recipes.filter((recipe) =>
+        recipe._id !== recipeID
+      );
+      return { ...state, recipes: updatedRecipes };
+    }),
+  updateOneRecipe: (recipe) =>
     set((state) => {
       const updatedRecipes = state.recipes.map((existingRecipe) =>
         existingRecipe._id === recipe._id ? recipe : existingRecipe,

@@ -3,21 +3,21 @@ import { login } from "../../services/api-service";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-const initialState = {
+const initialLoginData = {
   email: "",
   password: "",
 };
 
 function LogInForm() {
   // STATES:
-  const [state, setState] = useState(initialState);
+  const [loginData, setLoginData] = useState(initialLoginData);
   const navigate = useNavigate();
 
   // FUNCTIONS:
   // Update form's inputs' values:
   function handleChange(e) {
     const { name, value } = e.target;
-    setState((prevState) => ({
+    setLoginData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -33,16 +33,14 @@ function LogInForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const { email, password } = state;
-    const userDetails = { email, password };
-    const res = await login(userDetails);
+    const res = await login(loginData);
     const { success, message, user } = res;
 
     if (success) {
       handleSuccess(
         `Welcome back Chef ${user.firstName}! Let's get cooking...`,
       );
-      setState({
+      setLoginData({
         email: "",
         password: "",
       });
@@ -60,7 +58,7 @@ function LogInForm() {
           name="email"
           type="text"
           placeholder="Email"
-          value={state.email}
+          value={loginData.email}
           onChange={handleChange}
           required
         />
@@ -69,7 +67,7 @@ function LogInForm() {
           type="password"
           placeholder="Password"
           autoComplete="on"
-          value={state.password}
+          value={loginData.password}
           onChange={handleChange}
           required
         />

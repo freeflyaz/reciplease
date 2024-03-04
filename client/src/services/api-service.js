@@ -74,15 +74,6 @@ export async function toggleFavouritedBy(recipeId, userId) {
   }
 }
 
-export async function getRecipeDetails(recipeId) {
-  try {
-    const res = await fetch(`${BASE_URL}/recipe-details/${recipeId}`);
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function deleteRecipe(userId, recipeId) {
   try {
     const res = await fetch(`${BASE_URL}/delete-recipe/${userId}/${recipeId}`, {

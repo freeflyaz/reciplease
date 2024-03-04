@@ -11,10 +11,13 @@ router.post("/login", userController.loginUser);
 router.get("/dashboard/:id", recipeController.getRecipes);
 router.post("/create-recipe", recipeController.addARecipe);
 router.post("/favourite-recipe", recipeController.toggleFavouritedUser);
-router.get("/recipe-details/:id", recipeController.getRecipeDetails);
 router.delete(
   "/delete-recipe/:userId/:recipeId",
   recipeController.deleteRecipe,
 );
+
+router.all("*", (req, res) => {
+  res.status(404).send("Sorry, not found...");
+});
 
 module.exports = router;

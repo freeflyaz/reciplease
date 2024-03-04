@@ -9,23 +9,22 @@ function RecipeCard({ recipe }) {
   // VARIABLES:
   const userID = useStore((state) => state.userID);
   const recipes = useStore((state) => state.recipes);
-  const { updateRecipes } = useStore();
+  const { updatefilteredCategory, updateOneRecipe, removeOneRecipe } =
+    useStore();
   let favouriteRecipes = recipes.filter(
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
   );
   const navigate = useNavigate();
-  const { updatefilteredCategory } = useStore(); // Updates the Zustand filteredCategory value
 
   // FUNCTIONS:
-  async function handleFavourite(recipeID, userID) {
-    const res = await toggleFavouritedBy(recipeID, userID);
-    updateRecipes(res); // Updates the Zustand recipes array to reflect favourite status
+  async function handleFavourite() {
+    const res = await toggleFavouritedBy(recipe._id, userID); // recipeID and userID coming 'inpurely' from outer scope...
+    updateOneRecipe(res); // Updates the Zustand recipes array to reflect favourite status
   }
 
   async function handleDelete(userId, recipeId) {
     await deleteRecipe(userId, recipeId);
-    navigate("/dashboard");
-    // updateRecipes(res); // Updates the Zustand recipes array to reflect favourite status
+    removeOneRecipe(recipeId); // Update the Zustand recipes array to remove the recipe
   }
 
   // RENDER:
@@ -37,7 +36,7 @@ function RecipeCard({ recipe }) {
         className="recipe-card-img"
         onClick={() => {
           navigate(`/recipe-detail/${recipe._id}`);
-          updatefilteredCategory("All Recipes");
+          updatefilteredCategory("All Recipes"); // Updates the Zustand filteredCategory value
         }}
       />
       <div className="recipe-details">
@@ -54,12 +53,14 @@ function RecipeCard({ recipe }) {
                 : favouriteIconFalse
             }
             alt="Heart icon"
-            onClick={() => handleFavourite(recipe._id, userID)}
+            onClick={handleFavourite}
+            className="favourite-icon"
           />
           <img
             src={deleteIcon}
             alt="Delete Icon"
             onClick={() => handleDelete(userID, recipe._id)}
+            className="delete-icon"
           />
         </div>
       </div>

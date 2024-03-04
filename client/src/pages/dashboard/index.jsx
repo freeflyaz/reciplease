@@ -13,8 +13,8 @@ function Dashboard() {
   // userID, recipes array and filteredCategory from Zustand store:
   const userID = useStore((state) => state.userID);
   const allRecipes = useStore((state) => state.recipes);
-  const { addRecipes } = useStore(); // Populates the Zustand recipes array
   const filteredCategory = useStore((state) => state.filteredCategory);
+  const { addRecipes } = useStore(); // Populates the Zustand recipes array
   const [query, setQuery] = useState("");
   const searchedRecipes = allRecipes.filter((recipe) =>
     recipe.title.toLowerCase().includes(query.toLowerCase()),
@@ -25,7 +25,7 @@ function Dashboard() {
   useEffect(() => {
     async function getRecipesArr(userID) {
       const res = await getRecipes(userID);
-      addRecipes(res);
+      addRecipes(res.data);
     }
     getRecipesArr(userID);
   }, []);

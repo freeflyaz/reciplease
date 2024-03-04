@@ -3,52 +3,60 @@ import { toggleFavouritedBy } from "../../services/api-service";
 import favouriteIconTrue from "../../assets/favourite-true-icon.svg";
 import favouriteIconFalse from "../../assets/favourite-false-icon.svg";
 
-function RecipeIngredients({ recipe }) {
+function RecipeIngredients({ recipeDetail }) {
   // ZUSTAND VARIABLES:
   const userID = useStore((state) => state.userID);
-  const { updateRecipes } = useStore();
+  // const recipes = useStore((state) => state.recipes);
+  const updateOneRecipe = useStore((state) => state.updateOneRecipe);
 
   // FUNCTIONS:
-  async function handleFavourite(recipeID, userID) {
-    const res = await toggleFavouritedBy(recipeID, userID);
-    updateRecipes(res); // Updates the Zustand recipes array to reflect favourite status
+  async function handleFavourite() {
+    const res = await toggleFavouritedBy(recipeDetail._id, userID); // recipeID and userID coming 'inpurely' from outer scope...
+    updateOneRecipe(res); // Updates the Zustand recipes array to reflect favourite status
   }
 
   // RENDER:
-  return (
-    <div className="recipe-container">
-      <div className="recipe-img-container">
-        <img src={recipe.imageUrl} alt="Recipe photo" className="recipe-img" />
-      </div>
-
-      <div className="ingredients-details">
-        <div className="favourite-ingredients">
+  if (recipeDetail._id) {
+    return (
+      <div className="recipe-container">
+        <div className="recipe-img-container">
           <img
-            src={
-              recipe.length && recipe.favouritedBy.indexOf(userID) !== -1
-                ? favouriteIconTrue
-                : favouriteIconFalse
-            }
-            alt="Heart icon"
-            className="favourite-icon"
-            onClick={() => handleFavourite(recipe._id, userID)}
+            src={recipeDetail.imageUrl}
+            alt="Recipe photo"
+            className="recipe-img"
           />
-          <h2>{recipe.title}</h2>
         </div>
 
-        <p>{recipe.longDescription}</p>
+        <div className="ingredients-details">
+          <div className="favourite-ingredients">
+            <img
+              src={
+                recipeDetail.favouritedBy.indexOf(userID) !== -1
+                  ? favouriteIconTrue
+                  : favouriteIconFalse
+              }
+              alt="Heart icon"
+              className="favourite-icon"
+              onClick={handleFavourite}
+            />
+            <h2>{recipeDetail.title}</h2>
+          </div>
 
-        <h3>Ingredients</h3>
-        {recipe.ingredients &&
-          recipe.ingredients.map((ingredient, index) => (
-            <div key={index}>
-              <input type="checkbox" name={ingredient} className="checkbox" />
-              <label htmlFor={ingredient}>{ingredient}</label>
-            </div>
-          ))}
+          <p>{recipeDetail.longDescription}</p>
+
+          <h3>Ingredients</h3>
+          {recipeDetail.ingredients &&
+            recipeDetail.ingredients.map((ingredient, index) => (
+              <div key={index}>
+                <input type="checkbox" name={ingredient} className="checkbox" />
+                <label htmlFor={ingredient}>{ingredient}</label>
+              </div>
+            ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div>Loading...</div>;
+  }
 }
-
 export default RecipeIngredients;

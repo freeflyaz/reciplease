@@ -187,12 +187,17 @@
 .favourite-delete-icons {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
-.favourite-delete-icons > img {
-  width: 30px;
+.delete-icon {
+  width: 20px;
   cursor: pointer;
+}
+
+.favourite-delete-icons img:hover {
+  scale: 1.1;
 }
 
 /* --------------------------------------------------------- */

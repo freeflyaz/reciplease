@@ -100,6 +100,11 @@ button {
   background-color: var(--blush);
 }
 
+.uploaded {
+  background-color: #1f4e43;
+  border: none;
+}
+
 /* -------------------------------------------------------------- */
 
 /* FORM STYLING ------------------------------------------------- */

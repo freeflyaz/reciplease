@@ -1,9 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function UploadWidget({ setState }) {
+  // STATES:
+  let [buttonState, setButtonState] = useState("Not uploaded");
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
+  // USE EFFECTS:
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -21,13 +24,20 @@ function UploadWidget({ setState }) {
               ...prevState,
               imageUrl: result.info.secure_url,
             }));
+          setButtonState("Uploaded");
         }
       },
     );
   }, []);
 
+  // RENDER:
   return (
-    <button className="no-fill-btn" onClick={() => widgetRef.current.open()}>
+    <button
+      className={
+        buttonState === "Not Uploaded" ? "no-fill-btn" : "no-fill-btn uploaded"
+      }
+      onClick={() => widgetRef.current.open()}
+    >
       Upload Recipe Photo
     </button>
   );

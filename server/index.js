@@ -16,11 +16,6 @@ app.use(express.json());
 // Routes setup:
 app.use(router);
 
-// Route for handling 404 errors:
-app.get("*", (req, res) => {
-  res.status(404).send("Sorry, not found...");
-});
-
 // Start the server:
 app.listen(SERVER_PORT, (err) => {
   if (err) {

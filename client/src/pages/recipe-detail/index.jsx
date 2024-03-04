@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { getRecipeDetails } from "../../services/api-service";
+// import { getRecipeDetails } from "../../services/api-service";
 import Navbar from "../../components/navbar";
+import { useStore } from "../../zustand/store";
 import RecipeIngredients from "./recipe-ingredients";
 import RecipeMethod from "./recipe-method";
 import durationIcon from "../../assets/duration-icon.svg";
 
 function RecipeDetail() {
   // STATES:
-  const [recipe, setRecipe] = useState({});
-  let [selectedButton, setSelectedButton] = useState("Ingredients");
 
-  // USE EFFECTS:
-  // Get recipe details from database:
+  let [selectedButton, setSelectedButton] = useState("Ingredients");
+  const allRecipes = useStore((state) => state.recipes);
   const params = useParams();
   const recipeId = params.id;
-
-  useEffect(() => {
-    async function getRecipe(recipeId) {
-      const res = await getRecipeDetails(recipeId);
-      setRecipe(res);
-    }
-    getRecipe(recipeId);
-  }, []);
+  const recipeDetail = allRecipes.find((recipe) => recipe._id === recipeId);
 
   // FUNCTIONS:
   function handleClick(buttonName) {
@@ -51,19 +43,22 @@ function RecipeDetail() {
             </button>
           </div>
           <div className="servings-duration">
-            <p>{`${recipe.servings} servings`}</p>
+            <p>{`${recipeDetail.servings} servings`}</p>
             <div className="duration">
               <img src={durationIcon} alt="" />
-              <p>{`${recipe.duration} mins`}</p>
+              <p>{`${recipeDetail.duration} mins`}</p>
             </div>
           </div>
         </div>
       </div>
 
       {selectedButton === "Ingredients" && (
-        <RecipeIngredients recipe={recipe} />
+        <RecipeIngredients recipeDetail={recipeDetail} />
       )}
-      {selectedButton === "Method" && <RecipeMethod recipe={recipe} />}
+
+      {selectedButton === "Method" && (
+        <RecipeMethod recipeDetail={recipeDetail} />
+      )}
     </div>
   );
 }
