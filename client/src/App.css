@@ -1,14 +1,3 @@
-main {
-  /* Background image: */
-  background-image: url("./assets/reciplease-splash-screen.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-}
-
 .app {
   max-width: 1440px;
   margin: 0 auto;
@@ -62,6 +51,15 @@ main {
 .auth-container {
   grid-column: 1 / span 12;
   padding: 50px 0;
+
+  /* Background image: */
+  /* background-image: url("./assets/reciplease-splash-screen.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
 
   display: grid;
   grid-template-columns: repeat(12, 1fr);

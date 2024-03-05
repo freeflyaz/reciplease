@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   // ZUSTAND:
-  const { updateUserID } = useStore();
+  const { updateUserID, updatefilteredCategory, updateSelectedCategoryButton } =
+    useStore();
 
   // VARIABLES:
   const navigate = useNavigate();
@@ -17,12 +18,16 @@ function Navbar() {
         alt="Reciplease Logo"
         className="reciplease-logo"
         onClick={() => {
+          updatefilteredCategory("All Recipes");
+          updateSelectedCategoryButton("All Recipes");
           navigate("/dashboard");
         }}
       />
       <button
         className="btn-large"
         onClick={() => {
+          updatefilteredCategory("All Recipes");
+          updateSelectedCategoryButton("All Recipes");
           updateUserID("");
         }}
       >

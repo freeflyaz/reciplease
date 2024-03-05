@@ -25,6 +25,10 @@ export const useStore = create((set) => ({
   updatefilteredCategory: (category) =>
     set((state) => ({ ...state, filteredCategory: category })),
 
+  selectedCategoryButton: "All Recipes",
+  updateSelectedCategoryButton: (category) =>
+    set((state) => ({ ...state, selectedCategoryButton: category })),
+
   activeNavButton: 1,
   updateActiveNavButton: (number) =>
     set((state) => ({ ...state, activeNavButton: number })),
