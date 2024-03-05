@@ -33,7 +33,7 @@ function FormIngredients({ state, setState, setFormSection }) {
                 name="ingredients"
                 type="text"
                 placeholder="Add ingredient here"
-                maxLength={50}
+                maxLength={100}
                 value={ingredient}
                 onChange={(event) => handleIngredientChange(event, index)}
                 required

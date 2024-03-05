@@ -23,6 +23,10 @@ function RecipeDetail() {
     setSelectedButton(buttonName);
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // RENDER:
   if (recipeDetail) {
     return (
