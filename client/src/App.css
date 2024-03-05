@@ -147,7 +147,7 @@
 
 .category-wrapped-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 10px;
   overflow-x: scroll;
@@ -488,10 +488,6 @@ input[type="checkbox"]:checked {
     width: 75%;
   }
 
-  .category-wrapped-container {
-    justify-content: space-between;
-  }
-
   .recipe-card {
     width: 32%;
   }
@@ -512,6 +508,7 @@ input[type="checkbox"]:checked {
 
   .recipe-container {
     flex-direction: column;
+    gap: 10px;
     width: 70%;
     margin: auto;
   }
