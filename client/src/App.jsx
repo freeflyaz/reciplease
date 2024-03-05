@@ -13,24 +13,27 @@ function App() {
 
   // RENDER:
   return (
-    <div className="app">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Auth />} />
-          {!userID ? (
-            <>
-              <Route path="*" element={<Navigate to="/" />} />
-            </>
-          ) : (
-            <>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
-              <Route path="/create-recipe" element={<CreateRecipe />} />
-            </>
-          )}
-        </Routes>
-      </Router>
-    </div>
+    <main>
+      <div className="app">
+        <Router>
+          <Routes>
+            <Route path="/" element={<Auth />} />
+            {!userID ? (
+              <>
+                <Route path="*" element={<Navigate to="/" />} />
+              </>
+            ) : (
+              <>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
+                <Route path="/create-recipe" element={<CreateRecipe />} />
+              </>
+            )}
+          </Routes>
+        </Router>
+        <p className="footer">© 2024 Reciplease. All rights reserved.</p>
+      </div>
+    </main>
   );
 }
 
