@@ -29,10 +29,10 @@ const getRecipes = async (req, res) => {
 const addARecipe = async (req, res) => {
   try {
     // Add recipe to recipes collection:
-    const recipe = await recipeModel.create(req.body);
+    const recipe = await recipeModel.create(req.body.recipe);
 
     // Update recipes array in user collection:
-    const user = await userModel.findOne({ _id: "65df6b55a7005cc4479303d1" });
+    const user = await userModel.findOne({ _id: req.body.id });
     user.recipes.push(recipe._id);
     user.save();
 

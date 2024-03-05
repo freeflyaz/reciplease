@@ -155,6 +155,15 @@
   padding: 5px;
 }
 
+.title-and-scroll-icon {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-and-scroll-icon img {
+  width: 20px;
+}
+
 .recipe-card {
   width: 32.75%;
   background-color: var(--white);

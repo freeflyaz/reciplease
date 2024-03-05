@@ -14,7 +14,7 @@ function FormIngredients({ state, setState, setFormSection }) {
   // Track ingredients in the initial form state:
   const handleIngredientChange = (event, index) => {
     const { value } = event.target;
-    const ingredients = state.ingredients;
+    const ingredients = [...state.ingredients]; // Avoid mutating the initial array
     ingredients[index] = value;
     setState({ ...state, ingredients: ingredients });
   };

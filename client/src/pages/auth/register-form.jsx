@@ -2,7 +2,7 @@ import { useState } from "react";
 import { register } from "../../services/api-service";
 import { ToastContainer, toast } from "react-toastify";
 
-const initialState = {
+const initialRegisterDetails = {
   firstName: "",
   email: "",
   password: "",
@@ -10,7 +10,9 @@ const initialState = {
 
 function RegisterForm() {
   // STATES:
-  const [registerDetails, setRegisterDetails] = useState(initialState);
+  const [registerDetails, setRegisterDetails] = useState(
+    initialRegisterDetails,
+  );
 
   // FUNCTIONS:
   // Update form's inputs' values:
@@ -30,11 +32,7 @@ function RegisterForm() {
 
   // Reset form:
   function resetForm() {
-    setRegisterDetails({
-      firstName: "",
-      email: "",
-      password: "",
-    });
+    setRegisterDetails(initialRegisterDetails);
   }
 
   // On submit, send details to the server:

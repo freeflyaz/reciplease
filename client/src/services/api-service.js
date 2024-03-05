@@ -41,14 +41,14 @@ export async function getRecipes(userId) {
   }
 }
 
-export async function createRecipe(recipe) {
+export async function createRecipe(recipe, id) {
   try {
     const res = await fetch(`${BASE_URL}/create-recipe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(recipe),
+      body: JSON.stringify({ recipe, id }),
     });
 
     return await res.json();

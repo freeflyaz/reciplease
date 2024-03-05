@@ -1,8 +1,9 @@
 import recipleaseLogo from "../assets/reciplease-logo.svg";
-import { useNavigate } from "react-router-dom";
+import { useStore } from "../zustand/store";
 
 function Navbar() {
-  const navigate = useNavigate();
+  // ZUSTAND:
+  const { updateUserID } = useStore();
 
   // RENDER:
   return (
@@ -18,7 +19,7 @@ function Navbar() {
       <button
         className="btn-large"
         onClick={() => {
-          navigate("/");
+          updateUserID("");
         }}
       >
         Log Out

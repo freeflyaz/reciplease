@@ -37,10 +37,7 @@ function LogInForm() {
 
   // Reset form:
   function resetForm() {
-    setLoginData({
-      email: "",
-      password: "",
-    });
+    setLoginData(initialLoginData);
   }
 
   // On submit, send details to the server:
@@ -56,7 +53,7 @@ function LogInForm() {
       );
       resetForm();
       updateUserID(user._id);
-      setTimeout(() => navigate("/dashboard"), 2000);
+      setTimeout(() => navigate("/dashboard"), 1500);
     } else {
       handleError(message);
     }

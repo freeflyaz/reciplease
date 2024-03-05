@@ -21,7 +21,6 @@ function UploadWidget({ setState }) {
         if (error) {
           console.error(error);
         } else {
-          console.log(result);
           if (result.event === "success") {
             setState((prevState) => ({
               ...prevState,

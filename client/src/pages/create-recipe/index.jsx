@@ -16,8 +16,8 @@ const initialState = {
   category: "Mains",
   servings: "",
   duration: "",
-  ingredients: [],
-  method: [],
+  ingredients: [""],
+  method: [""],
 };
 
 function CreateRecipe() {
@@ -27,6 +27,7 @@ function CreateRecipe() {
 
   // ZUSTAND:
   const { updateActiveNavButton } = useStore();
+  const userID = useStore((state) => state.userID);
 
   // VARIABLES:
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ function CreateRecipe() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const res = await createRecipe(state);
+    const res = await createRecipe(state, userID);
     const { success, message } = res;
 
     if (success) {
@@ -66,9 +67,9 @@ function CreateRecipe() {
       updateActiveNavButton(1);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 2000);
+      }, 1500);
     } else {
-      handleError(message);
+      handleError(`${message}. Please make sure all fields are filled in.`);
     }
   }
 

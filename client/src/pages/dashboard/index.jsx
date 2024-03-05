@@ -34,54 +34,53 @@ function Dashboard() {
   }, []);
 
   // RENDER:
-  if (allRecipes.length > 0) {
-    return (
-      <div className="dashboard-container">
-        <Navbar />
-        <AddAndSearchBar query={query} setQuery={setQuery} />
-        <FilterButtons />
-        {
-          // All Recipes button selected:
+  return (
+    <div className="dashboard-container">
+      <Navbar />
+      <AddAndSearchBar query={query} setQuery={setQuery} />
+      <FilterButtons />
+      {
+        // All Recipes button selected:
+        allRecipes.length > 0 &&
+        query.length === 0 &&
+        filteredCategory === "All Recipes" ? (
+          <>
+            <CategoryCarousel categoryTitle="Starters" />
+            <CategoryCarousel categoryTitle="Mains" />
+            <CategoryCarousel categoryTitle="Sides" />
+            <CategoryCarousel categoryTitle="Desserts" />
+            <CategoryCarousel categoryTitle="Bakery" />
+            <CategoryCarousel categoryTitle="Drinks" />
+          </>
+        ) : (
           query.length === 0 &&
-          filteredCategory === "All Recipes" ? (
-            <>
-              <CategoryCarousel categoryTitle="Starters" />
-              <CategoryCarousel categoryTitle="Mains" />
-              <CategoryCarousel categoryTitle="Sides" />
-              <CategoryCarousel categoryTitle="Desserts" />
-              <CategoryCarousel categoryTitle="Bakery" />
-              <CategoryCarousel categoryTitle="Drinks" />
-            </>
-          ) : (
-            query.length === 0 &&
-            filteredCategory === "All Recipes" && (
-              <h2>You have no recipes. Get cooking!</h2>
-            )
+          filteredCategory === "All Recipes" && (
+            <h2>You have no recipes. Get cooking!</h2>
           )
-        }
+        )
+      }
 
-        {
-          // Specific category button selected:
-          query.length === 0 && filteredCategory !== "All Recipes" && (
-            <CategoryWrapped categoryTitle={`${filteredCategory}`} />
-          )
-        }
+      {
+        // Specific category button selected:
+        query.length === 0 && filteredCategory !== "All Recipes" && (
+          <CategoryWrapped categoryTitle={`${filteredCategory}`} />
+        )
+      }
 
-        {
-          // Search results:
-          query.length > 0 ? (
-            <div className="category-wrapped-container">
-              {searchedRecipes.map((recipe, index) => (
-                <RecipeCard key={index} recipe={recipe} />
-              ))}
-            </div>
-          ) : (
-            ""
-          )
-        }
-      </div>
-    );
-  }
+      {
+        // Search results:
+        query.length > 0 ? (
+          <div className="category-wrapped-container">
+            {searchedRecipes.map((recipe, index) => (
+              <RecipeCard key={index} recipe={recipe} />
+            ))}
+          </div>
+        ) : (
+          ""
+        )
+      }
+    </div>
+  );
 }
 
 export default Dashboard;

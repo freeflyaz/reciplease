@@ -10,7 +10,7 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
   // Track steps in the initial form state:
   const handleStepChange = (event, index) => {
     const { value } = event.target;
-    const method = state.method;
+    const method = [...state.method]; // Avoid mutating the initial array
     method[index] = value;
     setState({ ...state, method: method });
   };
