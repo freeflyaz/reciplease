@@ -418,9 +418,8 @@ textarea:focus {
   .create-recipe-form > form > input {
     background-color: var(--black);
   }
-}
 
-.create-recipe-container form input,
+  .create-recipe-container form input,
 select,
 textarea {
   background-color: var(--black);
@@ -452,6 +451,7 @@ textarea {
 
 .uploaded {
   background-color: #3bc063;
+}
 }
 
 /* -------------------------------------------------------------- */
