@@ -8,7 +8,7 @@ We've all encountered the frustration of having recipes scattered across website
 
 ### Technologies
 
-Choosing the right tools was important to create this app within the one week deadline. Figma helped me to design the app's interface, while Node.js, Express, MongoDB and Mongoose combined to build the robust backend. React brought the frontend to life using Zustand as a global state manage, Cloudinary to provide a seamless solution for image storage and React-Toastify to add helpful pop-up notifications throughout the app.
+Choosing the right tools was important to create this app within the one week deadline. Figma helped me to design the app's interface, while Node.js, Express, MongoDB and Mongoose combined to build the robust backend. React brought the frontend to life using Zustand as a global state manager, Cloudinary to provide a seamless solution for image storage and React-Toastify to add helpful pop-up notifications throughout the app.
 
 ### Features
 
@@ -34,27 +34,31 @@ I plan to enable:
 - Smoother carousel navigation on the dashboard
 - A robust authentication system using JWT
 - The integration of the Edamam API’s recipe search to provide users with recipes based off of their available ingredients
-  A longer-term goal is to make the app more of a social platform where users can share their recipes between themselves.
+
+A longer-term goal is to make the app a social platform where users can share their recipes with other users.
 
 ### **How to Install and Run the Project**
 
 **Prerequisites:**
 
 - Ensure you have MongoDB installed and running on your system.
-  **Instructions:**
 
-1. Clone the repository:
+**Instructions:**
+
+1. Fork the repositiory
+
+2. Clone the repository in your chosen destination:
    `git clone <repository_url>`
 
-2. Install dependencies:
+3. Install dependencies:
    - Navigate to the *server* folder and run:
      `npm install`
    - Navigate to the *client* folder and run:
      `npm install`
-3. Start the server:
+4. Start the server:
    - Open a terminal window, navigate to the *server* folder and run:
      `npm start`
-4. Start the client:
+5. Start the client:
 
    - Open another terminal window, navigate to the *client* folder and run:
      `npm run dev`
@@ -62,4 +66,4 @@ I plan to enable:
 
    **Note:** You may need to adjust the port numbers if you have other applications using port 3000 (the server’s default port) or port 5173 (the frontend’s default port).
 
-5. Create an account to begin using Reciplease
+6. Create an account to begin using Reciplease
