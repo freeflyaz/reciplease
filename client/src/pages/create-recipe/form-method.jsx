@@ -35,7 +35,7 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
           ))}
 
           <button type="button" className="no-fill-btn" onClick={handleAddStep}>
-            Add a Step
+            Add Another Step
           </button>
           <button type="submit">Submit Recipe</button>
         </div>

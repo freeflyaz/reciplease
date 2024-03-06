@@ -45,7 +45,7 @@ function FormIngredients({ state, setState, setFormSection }) {
               className="no-fill-btn"
               onClick={handleAddIngredient}
             >
-              Add an Ingredient
+              Add Another Ingredient
             </button>
             <button
               type="button"
