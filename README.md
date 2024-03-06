@@ -1,8 +1,6 @@
 <img src="./readme-assets/reciplease-logo.svg" width="250" style="display: block; margin: 0 auto;">
 
-# Reciplease
-
-### A full-stack MERN app which acts as a central repository for its users’ recipes.
+## A full-stack MERN app which acts as a central repository for its users’ recipes.
 
 ### What is Reciplease?
 
