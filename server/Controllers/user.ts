@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const userModel = require("../Models/user");
+import bcrypt from "bcrypt";
+import userModel from "../Models/user";
 
 const registerUser = async (req, res) => {
   const { email, password } = req.body;
@@ -43,5 +43,5 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+export default { registerUser, loginUser };
 // logoutUser;

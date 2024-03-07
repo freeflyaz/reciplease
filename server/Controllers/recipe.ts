@@ -1,7 +1,10 @@
-const recipeModel = require("../Models/recipe");
-const userModel = require("../Models/user");
+import recipeModel from "../Models/recipe";
+import userModel from "../Models/user";
+import { Request, Response } from "express";
 
-const getRecipes = async (req, res) => {
+type RouteHandler = (req: Request, res: Response) => Promise<void>;
+
+const getRecipes: RouteHandler = async (req, res) => {
   try {
     // Find user and populate their recipes array:
     const id = req.params.id;
@@ -26,7 +29,7 @@ const getRecipes = async (req, res) => {
   }
 };
 
-const addARecipe = async (req, res) => {
+const addARecipe: RouteHandler = async (req, res) => {
   try {
     // Add recipe to recipes collection:
     const recipe = await recipeModel.create(req.body.recipe);
@@ -42,7 +45,7 @@ const addARecipe = async (req, res) => {
   }
 };
 
-const toggleFavouritedUser = async (req, res) => {
+const toggleFavouritedUser: RouteHandler = async (req, res) => {
   try {
     // Find recipe:
     const recipe = await recipeModel.findOne({
@@ -65,7 +68,7 @@ const toggleFavouritedUser = async (req, res) => {
   }
 };
 
-const deleteRecipe = async (req, res) => {
+const deleteRecipe: RouteHandler = async (req, res) => {
   try {
     const userId = req.params.userId;
     const recipeId = req.params.recipeId;
@@ -91,7 +94,7 @@ const deleteRecipe = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   getRecipes,
   addARecipe,
   toggleFavouritedUser,
