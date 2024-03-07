@@ -34,7 +34,7 @@ export interface Recipe {
   favouritedBy: string[];
 }
 // Define User
-interface User {
+export interface User {
   firstName: string;
   email: string;
   password: string;
