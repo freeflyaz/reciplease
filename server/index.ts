@@ -1,11 +1,12 @@
-const express = require("express");
-const app = express();
+import express, { Express, Request, Response } from "express";
+import { Error } from "mongoose";
+import cors from "cors";
+import router from "./Routes/router";
 
-const cors = require("cors");
-const router = require("./Routes/router");
-const SERVER_PORT = 3000;
+const app: Express = express();
+const SERVER_PORT: number = 3000;
 
-const corsConfig = {
+const corsConfig: cors.CorsOptions = {
   origin: "http://localhost:5173",
 };
 
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(router);
 
 // Start the server:
-app.listen(SERVER_PORT, (err) => {
+app.listen(SERVER_PORT, (err?: Error) => {
   if (err) {
     console.log(`Sorry, something went wrong... ${err}`);
   } else {
