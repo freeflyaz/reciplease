@@ -1,6 +1,12 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { register } from "../../services/api-service";
 import { ToastContainer, toast } from "react-toastify";
+
+interface RegisterDetails {
+  firstName: string;
+  email: string;
+  password: string;
+}
 
 const initialRegisterDetails = {
   firstName: "",
@@ -8,7 +14,7 @@ const initialRegisterDetails = {
   password: "",
 };
 
-function RegisterForm() {
+function RegisterForm(): JSX.Element {
   // STATES:
   const [registerDetails, setRegisterDetails] = useState(
     initialRegisterDetails,
@@ -16,7 +22,7 @@ function RegisterForm() {
 
   // FUNCTIONS:
   // Update form's inputs' values:
-  function handleChange(e) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>): void {
     const { name, value } = e.target;
     setRegisterDetails((prevState) => ({
       ...prevState,
@@ -25,30 +31,34 @@ function RegisterForm() {
   }
 
   // Error pop-up if user's details are incorrect or already used:
-  const handleError = (err) => toast.error(err, { position: "top-right" });
+  const handleError = (err: string) => toast.error(err, { position: "top-right" });
 
   // Success pop-up if user's details are accepted:
-  const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
+  const handleSuccess = (msg: string) => toast.success(msg, { position: "top-right" });
 
   // Reset form:
-  function resetForm() {
+  function resetForm(): void {
     setRegisterDetails(initialRegisterDetails);
   }
 
   // On submit, send details to the server:
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const { firstName, email, password } = registerDetails;
     const user = { firstName, email, password };
-    const res = await register(user);
-    const { success, message } = res;
+    try {
+      const res = await register(user);
+      const { success, message } = res;
 
-    if (success) {
-      handleSuccess(`Welcome Chef ${firstName}! Please log in.`);
-      resetForm();
-    } else {
-      handleError(message);
+      if (success) {
+        handleSuccess(`Welcome Chef ${firstName}! Please log in.`);
+        resetForm();
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      handleError('An error occurred.');
     }
   }
 

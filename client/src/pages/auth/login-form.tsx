@@ -1,17 +1,31 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import { useStore } from "../../zustand/store";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../services/api-service";
 import { ToastContainer, toast } from "react-toastify";
 
-const initialLoginData = {
+interface LoginData {
+  email: string;
+  password: string;
+}
+interface User {
+  _id: string;
+  firstName: string;
+}
+interface LoginResponse {
+  success: boolean;
+  message: string;
+  user: User;
+}
+
+const initialLoginData: LoginData = {
   email: "",
   password: "",
 };
 
-function LogInForm() {
+const LogInForm: React.FC = () => {
   // STATES:
-  const [loginData, setLoginData] = useState(initialLoginData);
+  const [loginData, setLoginData] = useState<LoginData>(initialLoginData);
 
   // ZUSTAND:
   const { updateUserID } = useStore();
@@ -21,7 +35,7 @@ function LogInForm() {
 
   // FUNCTIONS:
   // Update form's inputs' values:
-  function handleChange(e) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginData((prevState) => ({
       ...prevState,
@@ -30,10 +44,10 @@ function LogInForm() {
   }
 
   // Error pop-up if user's details are incorrect:
-  const handleError = (err) => toast.error(err, { position: "top-right" });
+  const handleError = (err: string) => toast.error(err, { position: "top-right" });
 
   // Success pop-up if user's details are accepted:
-  const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
+  const handleSuccess = (msg: string) => toast.success(msg, { position: "top-right" });
 
   // Reset form:
   function resetForm() {
@@ -41,10 +55,10 @@ function LogInForm() {
   }
 
   // On submit, send details to the server:
-  async function handleSubmit(e) {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await login(loginData);
+    const res: LoginResponse = await login(loginData);
     const { success, message, user } = res;
 
     if (success) {
