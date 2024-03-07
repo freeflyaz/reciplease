@@ -2,6 +2,7 @@ import mongoose from '../db';
 import { Schema, model } from 'mongoose';
 
 interface IRecipe {
+  _id: mongoose.Schema.Types.ObjectId[];
   title: string;
   shortDescription: string;
   longDescription: string;
@@ -11,7 +12,7 @@ interface IRecipe {
   duration: number;
   ingredients: string[];
   method: string[];
-  favouritedBy: mongoose.Schema.Types.ObjectId[];
+  favouritedBy: string[];
 }
 
 const recipeSchema = new Schema<IRecipe>({

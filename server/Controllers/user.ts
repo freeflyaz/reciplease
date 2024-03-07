@@ -1,7 +1,10 @@
 import bcrypt from "bcrypt";
 import userModel from "../Models/user";
+import { Request, Response } from "express";
 
-const registerUser = async (req, res) => {
+//type RouteHandler = (req: Request, res: Response) => Promise<void>;
+//gabe If you use this loud handler type then the email and the password are complaining I think I made my life a little harder on The other controller file because of this maybe check it would it help you with!
+const registerUser = async (req: Request, res : Response) => {
   const { email, password } = req.body;
 
   // Check if user already exists:
@@ -27,11 +30,13 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req: Request, res : Response) => {
   const { email, password } = req.body;
   try {
     // Find the user and check their password is correct:
     const user = await userModel.findOne({ email: email });
+    if (!user) throw new Error();
+    
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) throw new Error();
 

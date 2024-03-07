@@ -5,7 +5,7 @@ interface IUser {
   firstName: string;
   email: string;
   password: string;
-  recipes: mongoose.Schema.Types.ObjectId[];
+  recipes: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>({
