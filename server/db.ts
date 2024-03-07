@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
-const DBConnectionString =
+import mongoose from "mongoose";
+
+const DBConnectionString: string =
   process.env.DBConnectionString || "mongodb://localhost:27017/reciplease";
 
 mongoose
   .connect(DBConnectionString)
   .then(() => console.log("Reciplease database connected"))
-  .catch((err) => console.error(`Database failed to connect: ${err}`));
+  .catch((err: Error) => console.error(`Database failed to connect: ${err}`));
 
-module.exports = mongoose;
+  export default mongoose;

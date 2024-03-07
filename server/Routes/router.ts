@@ -1,6 +1,9 @@
-const router = require("express").Router();
-const userController = require("../Controllers/user");
-const recipeController = require("../Controllers/recipe");
+import express, { Request, Response, Router } from 'express';
+import userController from '../Controllers/user';
+import recipeController from '../Controllers/recipe';
+
+//Router Type:
+const router: Router = express.Router();
 
 // userController routes:
 router.post("/register", userController.registerUser);
@@ -16,8 +19,8 @@ router.delete(
   recipeController.deleteRecipe,
 );
 
-router.all("*", (req, res) => {
+router.all("*", (req: Request, res: Response) => {
   res.status(404).send("Sorry, not found...");
 });
 
-module.exports = router;
+export default router;
