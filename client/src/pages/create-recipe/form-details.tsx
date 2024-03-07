@@ -1,6 +1,6 @@
-import FormNavigation from "./form-navigation";
-import { useStore } from "../../zustand/store";
-import UploadWidget from "./upload-widget";
+import FormNavigation from './form-navigation';
+import { useStore } from '../../zustand/store';
+import UploadWidget from './upload-widget';
 
 function FormDetails({ state, setState, handleChange, setFormSection }) {
   // ZUSTAND:
@@ -82,7 +82,7 @@ function FormDetails({ state, setState, handleChange, setFormSection }) {
             <button
               type="button"
               onClick={() => {
-                setFormSection("Ingredients");
+                setFormSection('Ingredients');
                 updateActiveNavButton(2);
               }}
             >
