@@ -1,12 +1,13 @@
+import React from "react";
 import recipleaseLogo from "../assets/reciplease-logo.svg";
 import { useStore } from "../zustand/store";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
+const Navbar: React.FC = () => {
   // ZUSTAND:
   const {
     updateUserID,
-    updatefilteredCategory,
+    updateFilteredCategory,
     updateSelectedCategoryButton,
     updateActiveNavButton,
   } = useStore();
@@ -22,7 +23,7 @@ function Navbar() {
         alt="Reciplease Logo"
         className="reciplease-logo"
         onClick={() => {
-          updatefilteredCategory("All Recipes");
+          updateFilteredCategory("All Recipes");
           updateSelectedCategoryButton("All Recipes");
           updateActiveNavButton(1);
           navigate("/dashboard");
@@ -31,7 +32,7 @@ function Navbar() {
       <button
         className="btn-large"
         onClick={() => {
-          updatefilteredCategory("All Recipes");
+          updateFilteredCategory("All Recipes");
           updateSelectedCategoryButton("All Recipes");
           updateActiveNavButton(1);
           updateUserID("");

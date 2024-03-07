@@ -1,15 +1,21 @@
-import { useStore } from "../zustand/store";
+import React from "react";
+import { useStore, Recipe } from "../zustand/store";
 import { toggleFavouritedBy, deleteRecipe } from "../services/api-service";
 import favouriteIconTrue from "../assets/favourite-true-icon.svg";
 import favouriteIconFalse from "../assets/favourite-false-icon.svg";
 import deleteIcon from "../assets/delete-icon.svg";
 import { useNavigate } from "react-router-dom";
 
-function RecipeCard({ recipe }) {
+//Define RecipeCardProp
+interface RecipeCardProps {
+  recipe: Recipe;
+}
+
+const RecipeCard: React.FC<RecipeCardProps> = ({recipe}) => {
   // VARIABLES:
   const userID = useStore((state) => state.userID);
   const recipes = useStore((state) => state.recipes);
-  const { updatefilteredCategory, updateOneRecipe, removeOneRecipe } =
+  const { updateFilteredCategory, updateOneRecipe, removeOneRecipe } =
     useStore();
   let favouriteRecipes = recipes.filter(
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
@@ -22,7 +28,7 @@ function RecipeCard({ recipe }) {
     updateOneRecipe(res); // Updates the Zustand recipes array to reflect favourite status
   }
 
-  async function handleDelete(userId, recipeId) {
+  async function handleDelete(userId: string, recipeId: string) {
     await deleteRecipe(userId, recipeId);
     removeOneRecipe(recipeId); // Update the Zustand recipes array to remove the recipe
   }
@@ -36,7 +42,7 @@ function RecipeCard({ recipe }) {
         className="recipe-card-img"
         onClick={() => {
           navigate(`/recipe-detail/${recipe._id}`);
-          updatefilteredCategory("All Recipes"); // Updates the Zustand filteredCategory value
+          updateFilteredCategory("All Recipes"); // Updates the Zustand filteredCategory value
         }}
       />
       <div className="recipe-details">
