@@ -1,4 +1,5 @@
-function RecipeMethod({ recipeDetail }) {
+import  { Recipe }  from "../../zustand/store"; 
+function RecipeMethod({ recipeDetail } : { recipeDetail : Recipe }) {
   // RENDER:
   return (
     <div className="recipe-container">
@@ -12,13 +13,12 @@ function RecipeMethod({ recipeDetail }) {
 
       <div className="ingredients-method">
         <h2>Method</h2>
-        {recipeDetail.method &&
-          recipeDetail.method.map((step, index) => (
-            <div key={index}>
-              <h3>{`Step ${index + 1}`}</h3>
-              <p>{step}</p>
-            </div>
-          ))}
+        {Array.isArray(recipeDetail.method) && recipeDetail.method.map((step : string, index : number) => (
+          <div key={index}>
+            <h3>{`Step ${index + 1}`}</h3>
+            <p>{step}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
