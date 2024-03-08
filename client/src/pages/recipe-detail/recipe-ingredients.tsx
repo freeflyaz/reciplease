@@ -2,8 +2,9 @@ import { useStore } from "../../zustand/store";
 import { toggleFavouritedBy } from "../../services/api-service";
 import favouriteIconTrue from "../../assets/favourite-true-icon.svg";
 import favouriteIconFalse from "../../assets/favourite-false-icon.svg";
+import  { Recipe }  from "../../zustand/store"; 
 
-function RecipeIngredients({ recipeDetail }) {
+function RecipeIngredients({ recipeDetail }: { recipeDetail: Recipe }) {
   // ZUSTAND:
   const userID = useStore((state) => state.userID);
   const updateOneRecipe = useStore((state) => state.updateOneRecipe);
@@ -44,8 +45,8 @@ function RecipeIngredients({ recipeDetail }) {
           <p>{recipeDetail.longDescription}</p>
 
           <h3>Ingredients</h3>
-          {recipeDetail.ingredients &&
-            recipeDetail.ingredients.map((ingredient, index) => (
+          {Array.isArray(recipeDetail.ingredients) &&
+            recipeDetail.ingredients.map((ingredient: string, index :number) => (
               <div key={index}>
                 <input type="checkbox" name={ingredient} className="checkbox" />
                 <label htmlFor={ingredient}>{ingredient}</label>
