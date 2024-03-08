@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from "express";
 import { Error } from "mongoose";
 import cors from "cors";
 import router from "./Routes/router";
+import {connect } from './db';
+import { connected } from "process";
 
 const app: Express = express();
 const SERVER_PORT: number = 3000;
@@ -17,6 +19,15 @@ app.use(express.json());
 // Routes setup:
 app.use(router);
 
+(async () => {
+ try {
+  await connect();
+  console.log('db is connected.🪂');
+ } catch (e) {
+  console.error(e)
+ }
+}
+)()
 // Start the server:
 app.listen(SERVER_PORT, (err?: Error) => {
   if (err) {
