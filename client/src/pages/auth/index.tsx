@@ -1,16 +1,16 @@
 import LogInForm from "./login-form";
 import RegisterForm from "./register-form";
-import { useState } from "react";
+import React, { useState } from "react";
 import recipleaseLogo from "../../assets/reciplease-logo.svg";
 
 function Auth() {
   // STATES:
-  let [selectedButton, setSelectedButton] = useState("Log In");
+  let [selectedButton, setSelectedButton] = useState<"Log In" | "Sign Up">("Log In");
 
   // FUNCTIONS:
-  function handleClick(buttonName) {
+  function handleClick(buttonName: "Log In" | "Sign Up") {
     setSelectedButton(buttonName);
-  }
+  };
 
   // RENDER:
   return (
