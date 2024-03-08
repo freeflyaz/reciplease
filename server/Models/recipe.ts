@@ -2,7 +2,7 @@ import mongoose from '../db';
 import { Schema, model } from 'mongoose';
 
 interface IRecipe {
-  _id: mongoose.Schema.Types.ObjectId[];
+  _id: mongoose.Types.ObjectId
   title: string;
   shortDescription: string;
   longDescription: string;
