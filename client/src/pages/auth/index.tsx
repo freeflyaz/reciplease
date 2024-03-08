@@ -10,6 +10,7 @@ function Auth() {
   // FUNCTIONS:
   function handleClick(buttonName: "Log In" | "Sign Up") {
     setSelectedButton(buttonName);
+    console.log('Hello');
   };
 
   // RENDER:
