@@ -1,23 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 
-function UploadWidget({ setState }) {
+interface UploadWidgetProps {
+  setState: React.Dispatch<React.SetStateAction<{
+    imageUrl: string;
+  }>>;
+}
+interface ExtendedWindow extends Window {
+  createUploadWidget(arg0: { cloudName: string; uploadPreset: string; sources: string[]; }, arg1: (error: any, result: { event: string; info: { secure_url: string; }; }) => void): any;
+  cloudinary: any; 
+}
+
+const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
   // STATES:
   let [isUploaded, setIsUploaded] = useState(false);
 
   // USE REFS:
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
+  const cloudinaryRef = useRef<ExtendedWindow>();
+  const widgetRef = useRef<any>();
 
   // USE EFFECTS:
   useEffect(() => {
-    cloudinaryRef.current = window.cloudinary;
+    cloudinaryRef.current = window as unknown as ExtendedWindow;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: "dz1qipahy",
         uploadPreset: "nrvaimia",
         sources: ["local", "url", "camera"],
       },
-      function (error, result) {
+      function (error: any, result: { event: string; info: { secure_url: string; }; }) {
         if (error) {
           console.error(error);
         } else {

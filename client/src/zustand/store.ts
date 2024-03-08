@@ -53,22 +53,17 @@ export const useStore = create<StoreModel>((set) => ({
   activeNavButton: 1,
 
   // Actions
-  updateUserID: (userID) => set((state) => ({ ...state, userID })),
-  addRecipes: (recipes) => set((state) => ({ ...state, recipes })),
-  removeOneRecipe: (recipeID) =>
-    set((state) => ({
-      recipes: state.recipes.filter((recipe) => recipe._id !== recipeID),
-    })),
-  updateOneRecipe: (recipe) =>
-    set((state) => ({
-      recipes: state.recipes.map((existingRecipe) =>
-        existingRecipe._id === recipe._id ? recipe : existingRecipe
-      ),
-    })),
-  updateFilteredCategory: (category) =>
-    set((state) => ({ ...state, filteredCategory: category })),
-  updateSelectedCategoryButton: (category) =>
-    set((state) => ({ ...state, selectedCategoryButton: category })),
-  updateActiveNavButton: (number) =>
-    set((state) => ({ ...state, activeNavButton: number })),
+  updateUserID: (userID: string) => set((state) => ({ ...state, userID })),
+  addRecipes: (recipes: Recipe[]) => set((state) => ({ ...state, recipes })),
+  removeOneRecipe: (recipeID: string) => set((state) => ({
+    recipes: state.recipes.filter((recipe) => recipe._id !== recipeID),
+  })),
+  updateOneRecipe: (recipe: Recipe) => set((state) => ({
+    recipes: state.recipes.map((existingRecipe) =>
+      existingRecipe._id === recipe._id ? recipe : existingRecipe
+    ),
+  })),
+  updateFilteredCategory: (category: string) => set((state) => ({ ...state, filteredCategory: category })),
+  updateSelectedCategoryButton: (category: string) => set((state) => ({ ...state, selectedCategoryButton: category })),
+  updateActiveNavButton: (number: number) => set((state) => ({ ...state, activeNavButton: number })),
 }));

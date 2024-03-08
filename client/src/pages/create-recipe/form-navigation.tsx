@@ -1,6 +1,11 @@
 import { useStore } from "../../zustand/store";
 
-function FormNavigation({ formSection, setFormSection }) {
+interface FormNavigationProps {
+  formSection: string;
+  setFormSection: (formSection: string) => void;
+}
+
+const FormNavigation: React.FC<FormNavigationProps> = ({ formSection, setFormSection }) => {
   // ZUSTAND:
   const activeNavButton = useStore((state) => state.activeNavButton);
   const { updateActiveNavButton } = useStore();

@@ -1,6 +1,19 @@
+import React from 'react';
 import FormNavigation from "./form-navigation";
 
-function FormMethod({ state, setState, setFormSection, handleSubmit }) {
+interface FormState {
+  method: string[];
+}
+
+interface FormMethodProps {
+  state: FormState;
+  setState: React.Dispatch<React.SetStateAction<FormState>>;
+  formSection: string; 
+  setFormSection: (section: string) => void;
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const FormMethod: React.FC<FormMethodProps> = ({ state, setState, formSection, setFormSection, handleSubmit }) => {
   // FUNCTIONS:
   // Update initial form state with steps
   const handleAddStep = () => {
@@ -8,9 +21,9 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
   };
 
   // Track steps in the initial form state:
-  const handleStepChange = (event, index) => {
+  const handleStepChange = (event: React.ChangeEvent<HTMLTextAreaElement>, index: number) => {
     const { value } = event.target;
-    const method = [...state.method]; // Avoid mutating the initial array
+    const method = [...state.method]; 
     method[index] = value;
     setState({ ...state, method: method });
   };
@@ -20,13 +33,12 @@ function FormMethod({ state, setState, setFormSection, handleSubmit }) {
     <div className="create-recipe-form">
       <form onSubmit={handleSubmit}>
         <h2>How do you make it, Chef?</h2>
-        <FormNavigation setFormSection={setFormSection} />
+        <FormNavigation setFormSection={setFormSection} formSection={formSection} />
         <div className="create-recipe-form-method">
           {state.method.map((step, index) => (
             <textarea
               key={index}
               name="method"
-              type="text"
               placeholder="Add step here"
               value={step}
               onChange={(event) => handleStepChange(event, index)}

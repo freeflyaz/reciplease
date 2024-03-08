@@ -2,8 +2,24 @@ import FormNavigation from './form-navigation';
 import { useStore } from '../../zustand/store';
 import UploadWidget from './upload-widget';
 
-function FormDetails({ state, setState, handleChange, setFormSection }) {
-  // ZUSTAND:
+interface FormState {
+  category: string;
+  servings: number;
+  duration: number;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+}
+
+interface FormDetailsProps {
+  state: FormState;
+  setState: React.Dispatch<React.SetStateAction<FormState>>;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  setFormSection: (section: string) => void;
+}
+
+const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange, setFormSection }) => {
+  // Zustand
   const { updateActiveNavButton } = useStore();
 
   // RENDER:
@@ -11,7 +27,7 @@ function FormDetails({ state, setState, handleChange, setFormSection }) {
     <div className="create-recipe-form">
       <form>
         <h2>What's on the menu, Chef?</h2>
-        <FormNavigation setFormSection={setFormSection} />
+        <FormNavigation setFormSection={setFormSection} formSection={''} />
         <div className="create-recipe-form-details">
           <div className="form-column">
             <UploadWidget state={state} setState={setState} />

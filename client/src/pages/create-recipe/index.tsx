@@ -8,7 +8,19 @@ import { ToastContainer, toast } from "react-toastify";
 import { useStore } from "../../zustand/store";
 import { useNavigate } from "react-router-dom";
 
-const initialState = {
+interface RecipeState {
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  imageUrl: string;
+  category: string;
+  servings: string;
+  duration: string;
+  ingredients: string[];
+  method: string[];
+}
+
+const initialState: RecipeState = {
   title: "",
   shortDescription: "",
   longDescription: "",
@@ -20,9 +32,9 @@ const initialState = {
   method: [""],
 };
 
-function CreateRecipe() {
+const CreateRecipe: React.FC = () => {
   // STATES:
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<RecipeState>(initialState);
   const [formSection, setFormSection] = useState("Details");
 
   // ZUSTAND:
@@ -33,14 +45,14 @@ function CreateRecipe() {
   const navigate = useNavigate();
 
   // FUNCTIONS:
-  // Error pop-up if recipe errors::
-  const handleError = (err) => toast.error(err, { position: "top-right" });
+  // Error pop-up if recipe errors:
+  const handleError = (err: string) => toast.error(err, { position: "top-right" });
 
   // Success pop-up if recipe is created:
-  const handleSuccess = (msg) => toast.success(msg, { position: "top-right" });
+  const handleSuccess = (msg: string) => toast.success(msg, { position: "top-right" });
 
   // Update form's inputs' values:
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     const { name, value } = e.target;
     setState((prevState) => ({
       ...prevState,
@@ -54,9 +66,9 @@ function CreateRecipe() {
   }
 
   // Submit form to server:
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    
     const res = await createRecipe(state, userID);
     const { success, message } = res;
 
@@ -89,7 +101,6 @@ function CreateRecipe() {
         <FormIngredients
           state={state}
           setState={setState}
-          handleChange={handleChange}
           setFormSection={setFormSection}
         />
       )}

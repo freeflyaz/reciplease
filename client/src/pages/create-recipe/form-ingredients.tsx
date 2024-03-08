@@ -1,7 +1,18 @@
+import React from 'react';
 import FormNavigation from "./form-navigation";
 import { useStore } from "../../zustand/store";
 
-function FormIngredients({ state, setState, setFormSection }) {
+interface FormState {
+  ingredients: string[];
+}
+
+interface FormIngredientsProps {
+  state: FormState;
+  setState: React.Dispatch<React.SetStateAction<FormState>>;
+  setFormSection: (section: string) => void;
+}
+
+const FormIngredients: React.FC<FormIngredientsProps> = ({ state, setState, setFormSection }) => {
   // ZUSTAND:
   const { updateActiveNavButton } = useStore();
 
@@ -12,7 +23,7 @@ function FormIngredients({ state, setState, setFormSection }) {
   };
 
   // Track ingredients in the initial form state:
-  const handleIngredientChange = (event, index) => {
+  const handleIngredientChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const { value } = event.target;
     const ingredients = [...state.ingredients]; // Avoid mutating the initial array
     ingredients[index] = value;
