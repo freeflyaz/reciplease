@@ -35,10 +35,10 @@ export interface Recipe {
 }
 // Define User
 export interface User {
-  firstName: string;
+  firstName?: string;
   email: string;
   password: string;
-  recipes: string[];
+  recipes?: string[];
 }
 
 //Combine state and actions

@@ -1,11 +1,7 @@
 // import { Recipe, User } from '../zustand/store';
 const BASE_URL = 'http://localhost:3000';
-export interface User {
-  firstName?: string;
-  email: string;
-  password: string;
-  recipes?: Array<string>;
-}
+import { User } from "../zustand/store";
+
 export interface Recipe {
   title: string;
   shortDescription: string;
