@@ -1,5 +1,23 @@
-import { Recipe, User } from '../zustand/store';
+// import { Recipe, User } from '../zustand/store';
 const BASE_URL = 'http://localhost:3000';
+export interface User {
+  firstName?: string;
+  email: string;
+  password: string;
+  recipes?: Array<string>;
+}
+export interface Recipe {
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  imageUrl: string;
+  category: string;
+  servings: number;
+  duration: number;
+  ingredients: Array<string>;
+  method: Array<string>;
+  favouritedBy?: Array<string>;
+}
 
 export async function register(user: User) {
   try {

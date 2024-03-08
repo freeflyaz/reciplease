@@ -7,7 +7,7 @@ import { Request, Response } from "express";
 const registerUser = async (req: Request, res : Response) => {
   const { email, password } = req.body;
 
-  // Check if user already exists:
+  // Check if user` already exists:
   const user = await userModel.findOne({ email: email });
   if (user)
     return res
