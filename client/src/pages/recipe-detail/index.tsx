@@ -19,7 +19,7 @@ function RecipeDetail() {
   const recipeDetail = allRecipes.find((recipe) => recipe._id === recipeId);
 
   // FUNCTIONS:
-  function handleClick(buttonName) {
+  function handleClick(buttonName: string) {
     setSelectedButton(buttonName);
   }
 
