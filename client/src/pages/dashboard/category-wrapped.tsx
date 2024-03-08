@@ -1,7 +1,12 @@
 import RecipeCard from "../../components/recipe-card";
 import { useStore } from "../../zustand/store";
+import React from "react";
 
-function CategoryWrapped({ categoryTitle }) {
+interface CategoryWrappedProps {
+  categoryTitle: string;
+}
+
+const CategoryWrapped: React.FC<CategoryWrappedProps> = ({ categoryTitle }) => {
   // ZUSTAND:
   const userID = useStore((state) => state.userID);
   const recipes = useStore((state) => state.recipes);

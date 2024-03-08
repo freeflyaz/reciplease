@@ -1,16 +1,18 @@
 import { useStore } from "../../zustand/store";
+import React from "react";
 
-function FilterButtons() {
+type Category = "All Recipes" | "Starters" | "Mains" | "Sides" | "Desserts" | "Bakery" | "Drinks" | "Favourites";
+
+const FilterButtons: React.FC = () => {
   // ZUSTAND:
-  const selectedCategoryButton = useStore(
-    (state) => state.selectedCategoryButton,
-  );
-  const { updatefilteredCategory, updateSelectedCategoryButton } = useStore(); // Updates the Zustand filteredCategory value
+  const selectedCategoryButton = useStore((state) => state.selectedCategoryButton);
+  const updateFilteredCategory = useStore((state) => state.updateFilteredCategory);
+  const updateSelectedCategoryButton = useStore((state) => state.updateSelectedCategoryButton);
 
   // FUNCTIONS:
-  function handleClick(buttonName) {
+  function handleClick(buttonName: Category) {
     updateSelectedCategoryButton(buttonName);
-    updatefilteredCategory(buttonName);
+    updateFilteredCategory(buttonName);
   }
 
   // RENDER:

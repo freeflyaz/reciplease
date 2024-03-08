@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 //Define RecipeCardProp
 interface RecipeCardProps {
   recipe: Recipe;
+  className?: string;
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({recipe}) => {

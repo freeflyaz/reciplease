@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 // Define structure
-interface StoreState {
+export interface StoreState {
   userID: string;
   recipes: Recipe[];
   filteredCategory: string;
@@ -9,7 +9,7 @@ interface StoreState {
   activeNavButton: number;
 }
 // Define actions
-interface StoreActions {
+export interface StoreActions {
   updateUserID: (userID: string) => void;
   addRecipes: (recipes: Recipe[]) => void;
   removeOneRecipe: (recipeID: string) => void;
@@ -21,7 +21,7 @@ interface StoreActions {
 
 //Define Recipe
 export interface Recipe {
-  _id: any;
+  _id: string;
   title: string;
   shortDescription: string;
   longDescription: string;

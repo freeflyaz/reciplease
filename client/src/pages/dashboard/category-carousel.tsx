@@ -1,14 +1,20 @@
 import RecipeCard from "../../components/recipe-card";
 import { useStore } from "../../zustand/store";
 import scrollIcon from "../../assets/scroll-icon.svg";
+import React from "react";
+import { Recipe } from "../../zustand/store";
 
-function CategoryCarousel({ categoryTitle }) {
+interface CategoryWrappedProps {
+  categoryTitle: string;
+}
+
+const CategoryCarousel: React.FC<CategoryWrappedProps> = ({ categoryTitle }) => {
   // ZUSTAND:
   const recipes = useStore((state) => state.recipes);
 
   // VARIABLES:
   const recipesByCategory = recipes.filter(
-    (recipe) => recipe.category === categoryTitle,
+    (recipe: Recipe) => recipe.category === categoryTitle,
   );
 
   // RENDER:

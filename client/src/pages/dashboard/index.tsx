@@ -3,19 +3,24 @@ import AddAndSearchBar from "./add-and-search-bar";
 import FilterButtons from "./filter-buttons";
 import CategoryCarousel from "./category-carousel";
 import CategoryWrapped from "./category-wrapped";
-import { useStore } from "../../zustand/store";
-import { useState, useEffect } from "react";
+import { Recipe, useStore } from "../../zustand/store";
+import React, { useState, useEffect, FC } from "react";
 import { getRecipes } from "../../services/api-service";
 import RecipeCard from "../../components/recipe-card";
+import { StoreState } from "../../zustand/store";
 
-function Dashboard() {
+interface ApiResponse {
+  data: Recipe[];
+}
+
+const Dashboard: FC = () => {
   // STATES:
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
 
   // ZUSTAND:
-  const userID = useStore((state) => state.userID);
-  const allRecipes = useStore((state) => state.recipes);
-  const filteredCategory = useStore((state) => state.filteredCategory);
+  const userID = useStore((state: StoreState) => state.userID);
+  const allRecipes = useStore((state: StoreState) => state.recipes);
+  const filteredCategory = useStore((state: StoreState) => state.filteredCategory);
   const { addRecipes } = useStore(); // Populates the Zustand recipes array
 
   // VARIABLES:
@@ -26,8 +31,8 @@ function Dashboard() {
   // USE EFFECTS:
   // Get all recipes on load and update recipes array in the Zustand store:
   useEffect(() => {
-    async function getRecipesArr(userID) {
-      const res = await getRecipes(userID);
+    async function getRecipesArr(userID: string) {
+      const res: ApiResponse = await getRecipes(userID);
       addRecipes(res.data);
     }
     getRecipesArr(userID);
