@@ -4,6 +4,7 @@ import userModel from "../Models/user";
 import { Request, Response } from "express";
 
 
+
 type RouteHandler = (req: Request, res: Response) => Promise<void>;
 
 const getRecipes: RouteHandler = async (req, res) => {
