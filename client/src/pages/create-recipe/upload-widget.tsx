@@ -6,8 +6,14 @@ interface UploadWidgetProps {
   }>>;
 }
 interface ExtendedWindow extends Window {
-  createUploadWidget(arg0: { cloudName: string; uploadPreset: string; sources: string[]; }, arg1: (error: any, result: { event: string; info: { secure_url: string; }; }) => void): any;
-  cloudinary: any; 
+  createUploadWidget(arg0: { 
+    cloudName: string; 
+    uploadPreset: string; 
+    sources: string[]; }, 
+    arg1: (
+      error: any, 
+      result: { event: string; info: { secure_url: string; }; }) => void): any;
+    cloudinary: any; 
 }
 
 const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
@@ -15,33 +21,38 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
   let [isUploaded, setIsUploaded] = useState(false);
 
   // USE REFS:
-  const cloudinaryRef = useRef<ExtendedWindow>();
+  const cloudinaryRef = useRef<any>(window.cloudinary);
+  console.log(window.cloudinary);
   const widgetRef = useRef<any>();
 
   // USE EFFECTS:
   useEffect(() => {
-    cloudinaryRef.current = window as unknown as ExtendedWindow;
+  if (typeof window !== "undefined" && window.cloudinary) {
+    const extendedWindow = window as unknown as ExtendedWindow;
+    cloudinaryRef.current = extendedWindow.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
         cloudName: "dz1qipahy",
         uploadPreset: "nrvaimia",
         sources: ["local", "url", "camera"],
       },
-      function (error: any, result: { event: string; info: { secure_url: string; }; }) {
+      function (error: any, result: { event: string; info: { secure_url: string } }) {
         if (error) {
           console.error(error);
-        } else {
-          if (result.event === "success") {
-            setState((prevState) => ({
-              ...prevState,
-              imageUrl: result.info.secure_url,
-            }));
-            setIsUploaded(true);
-          }
+        } else if (result.event === "success") {
+          setState((prevState) => ({
+            ...prevState,
+            imageUrl: result.info.secure_url,
+          }));
+          setIsUploaded(true);
         }
       },
     );
-  }, []);
+  } else {
+    console.error('Cloudinary SDK not loaded');
+  }
+}, []);
+
 
   // RENDER:
   return (
