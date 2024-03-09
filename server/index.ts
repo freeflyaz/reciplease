@@ -36,3 +36,5 @@ app.listen(SERVER_PORT, (err?: Error) => {
     console.log(`Server is listening on http://localhost:${SERVER_PORT}/`);
   }
 });
+
+export default app;
