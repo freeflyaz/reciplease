@@ -18,12 +18,12 @@ describe('Auth component', () => {
       );
   
       // Access the button by role with name "Add recipe"
-      const addButton = screen.getByRole('button', { name: /log in/i });
+      const addButton = screen.getAllByRole('button', { name: /log in/i });
   
       // Assertions
      
       //expect(addButton).toHaveLength(1)
-      expect(addButton).toHaveTextContent(/log in/i);
+      expect(addButton).length(2);
       
     //   ('Add recipe');
     });

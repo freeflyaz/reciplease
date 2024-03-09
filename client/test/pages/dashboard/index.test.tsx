@@ -1,10 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { act, render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from "react-router-dom";
 import '@testing-library/jest-dom/vitest';
 import Dashboard from '../../../src/pages/dashboard';
-import { login } from '../../../src/services/api-service';
-import { useStore } from 'zustand';
+
 
 describe('Dashboard Component', () => {
   it('renders category filter buttons', async () => {
