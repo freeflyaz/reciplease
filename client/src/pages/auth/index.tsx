@@ -36,8 +36,8 @@ function Auth() {
             Sign Up
           </button>
         </div>
-        {selectedButton === "Log In" && <LogInForm />}
-        {selectedButton === "Sign Up" && <RegisterForm />}
+        {/* {selectedButton === "Log In" && <LogInForm />}
+        {selectedButton === "Sign Up" && <RegisterForm />} */}
       </div>
     </div>
   );
