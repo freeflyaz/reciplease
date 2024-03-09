@@ -36,7 +36,7 @@ const FormIngredients: React.FC<FormIngredientsProps> = ({ state, setState, setF
       <div className="create-recipe-form">
         <form>
           <h2>What are the ingredients, Chef?</h2>
-          <FormNavigation setFormSection={setFormSection} />
+          <FormNavigation setFormSection={setFormSection} formSection={''} />
           <div className="create-recipe-form-ingredients">
             {state.ingredients.map((ingredient, index) => (
               <input
