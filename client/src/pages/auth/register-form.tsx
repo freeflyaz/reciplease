@@ -73,6 +73,7 @@ function RegisterForm(): JSX.Element {
           value={registerDetails.firstName}
           onChange={handleChange}
           required
+          
         />
         <input
           name="email"

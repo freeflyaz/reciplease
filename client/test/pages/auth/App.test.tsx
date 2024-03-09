@@ -12,15 +12,10 @@ describe('Auth component', () => {
       // Wrap the component in Router to avoid issues with useNavigate
       render(
           <App/>
-       
       );
-  
-      // Access the button by role with name "Add recipe"
       const footerText = screen.getByText(/©/i) 
-       
-      // Assertions
-     
       expect(footerText).toHaveTextContent(/©/i);
-      
     });
 });
+
+
