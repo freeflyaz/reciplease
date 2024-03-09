@@ -2,28 +2,25 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import '@testing-library/jest-dom/vitest'
-import Auth from '../../../src/pages/auth/index'; // Adjust the path as necessary
+import App from '../../../src/App'; // Adjust the path as necessary
 // Import from 'react-router-dom'
 
 
 
 describe('Auth component', () => {
-    it('should render a button with the text "Log In"',  () => {
+    it('should render text © 2024 Reciplease. All rights reserved.', () => {
       // Wrap the component in Router to avoid issues with useNavigate
       render(
-        <Router>
-          <Auth/>
-          </Router>
+          <App/>
        
       );
   
       // Access the button by role with name "Add recipe"
-      const addButton = screen.getByTestId('login-button');
+      const footerText = screen.getByText(/©/i) 
+       
       // Assertions
      
-      //expect(addButton).toHaveLength(1)
-      expect(addButton).toHaveTextContent(/log in/i);
+      expect(footerText).toHaveTextContent(/©/i);
       
-    //   ('Add recipe');
     });
 });
