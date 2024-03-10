@@ -55,6 +55,7 @@ export async function login(user: User) {
 
 export async function getRecipes<T>(userId: string): Promise<T> {
   try {
+    console.log('This is the user ID: ', userId);
     const res = await fetch(`${BASE_URL}/dashboard/${userId}`);
     // Handeling HTTP status code errors
     if (!res.ok) {
