@@ -10,6 +10,7 @@ afterAll(async () => {
 });
 
 describe('User Registration and Login', () => {
+  
   it('should register a new user successfully', async () => {
     const userData = { firstName: 'test', email: 'test@example.com', password: 'password123' };
     const response = await request.post('/register').send(userData);
@@ -19,8 +20,15 @@ describe('User Registration and Login', () => {
   });
 
   it('should fail to register a user with an existing email', async () => {
-    const userData = { email: 'test@example.com', password: 'password123' };
+    const userData = { firstName: 'test', email: 'test@example.com', password: 'password123' };
     const response = await request.post('/register').send(userData);
+    expect(response.status).toBe(409);
+    expect(response.body.success).toBe(false);
+  });
+
+  it('should fail to log in a user with an existing email', async () => {
+    const userData = { email: 'wrong@example.com', password: 'password123' };
+    const response = await request.post('/login').send(userData);
     expect(response.status).toBe(409);
     expect(response.body.success).toBe(false);
   });
