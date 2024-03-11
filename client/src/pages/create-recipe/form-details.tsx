@@ -34,7 +34,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
 
             <select
               name="category"
-              value={state.category}
+              value={state?.category}
               onChange={handleChange}
             >
               <option value="Starters">Starter</option>
@@ -50,7 +50,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
               type="number"
               placeholder="Number of servings"
               min={1}
-              value={state.servings}
+              value={state?.servings}
               onChange={handleChange}
               required
             />
@@ -60,7 +60,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
               type="number"
               placeholder="Duration (in minutes)"
               min={1}
-              value={state.duration}
+              value={state?.duration}
               onChange={handleChange}
               required
             />
@@ -72,7 +72,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
               type="text"
               placeholder="Recipe Title"
               maxLength={70}
-              value={state.title}
+              value={state?.title}
               onChange={handleChange}
               required
             />
@@ -82,7 +82,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
               type="text"
               placeholder="Recipe Short Description"
               maxLength={70}
-              value={state.shortDescription}
+              value={state?.shortDescription}
               onChange={handleChange}
               required
             />
@@ -90,7 +90,7 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
             <textarea
               name="longDescription"
               placeholder="Recipe Long Description"
-              value={state.longDescription}
+              value={state?.longDescription}
               onChange={handleChange}
               required
             />
