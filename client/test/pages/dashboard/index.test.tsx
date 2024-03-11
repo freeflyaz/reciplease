@@ -3,16 +3,15 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from "react-router-dom";
 import '@testing-library/jest-dom/vitest';
 import Dashboard from '../../../src/pages/dashboard';
-import zustand from 'zustand';
 
-// Mock the Zustand store
-vi.mock('./useStore', () => ({
-  __esModule: true,
-  default: vi.fn(() => ({
-    userId: 'test-user-id',
-    // Mock other parts of your store as needed
-  })),
-}));
+// // Mock the Zustand store
+// vi.mock('./useStore', () => ({
+//   __esModule: true,
+//   default: vi.fn(() => ({
+//     userId: 'test-user-id',
+//     // Mock other parts of your store as needed
+//   })),
+// }));
 
 vi.mock('../../../src/services/api-service', () => ({
   getRecipes: vi.fn().mockResolvedValue({
@@ -37,6 +36,29 @@ vi.mock('../../../src/services/api-service', () => ({
         favouritedBy: [],
         __v: 0
       },
+      {
+        _id: "65ec6f5dc151ff6e1ae8c3f4",
+        title: "Volcan de Chocolate",
+        shortDescription: "Volcan de chocolate",
+        longDescription: "Postre de chocolate con helado",
+        imageUrl: "https://res.cloudinary.com/dz1qipahy/image/upload/v1709993757/jqicrum8ktm0zgdo3kce.jpg",
+        category: "Desserts",
+        servings: 2,
+        duration: 30,
+        ingredients: [
+            "Chocolate",
+            "Harina",
+            "Huevo",
+            "Helado"
+        ],
+        method: [
+            "Preparar el volcan y servir con helado"
+        ],
+        favouritedBy: [
+            "65eaf363c786cf9cc79dea89"
+        ],
+        __v: 1
+      }
     ],
     message: "Successfully retrieved recipes for user",
   }),
@@ -65,6 +87,7 @@ describe('Dashboard Component', () => {
 
     // Assert that your mock data is rendered as expected
     expect(await screen.findByText('Colita de Cuadril')).toBeInTheDocument();
+    expect(await screen.findByText('Volcan de Chocolate')).toBeInTheDocument();
     // Add any additional assertions here
   });
 });
