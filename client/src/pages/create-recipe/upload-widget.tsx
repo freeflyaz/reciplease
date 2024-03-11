@@ -1,68 +1,62 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface UploadWidgetProps {
-  setState: React.Dispatch<React.SetStateAction<{
-    imageUrl: string;
-  }>>;
-}
-interface ExtendedWindow extends Window {
-  createUploadWidget(arg0: { 
-    cloudName: string; 
-    uploadPreset: string; 
-    sources: string[]; }, 
-    arg1: (
-      error: any, 
-      result: { event: string; info: { secure_url: string; }; }) => void): any;
-    cloudinary: any; 
+  setState: React.Dispatch<React.SetStateAction<{ imageUrl: string; }>>;
 }
 
 const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
-  // STATES:
-  let [isUploaded, setIsUploaded] = useState(false);
+  const [isUploaded, setIsUploaded] = useState(false);
 
-  // USE REFS:
-  const cloudinaryRef = useRef<any>(window.cloudinary);
-  console.log(window.cloudinary);
-  const widgetRef = useRef<any>();
-
-  // USE EFFECTS:
   useEffect(() => {
-  if (typeof window !== "undefined" && window.cloudinary) {
-    const extendedWindow = window as unknown as ExtendedWindow;
-    cloudinaryRef.current = extendedWindow.cloudinary;
-    widgetRef.current = cloudinaryRef.current.createUploadWidget(
-      {
-        cloudName: "dz1qipahy",
-        uploadPreset: "nrvaimia",
-        sources: ["local", "url", "camera"],
-      },
-      function (error: any, result: { event: string; info: { secure_url: string } }) {
-        if (error) {
-          console.error(error);
-        } else if (result.event === "success") {
-          setState((prevState) => ({
-            ...prevState,
-            imageUrl: result.info.secure_url,
-          }));
-          setIsUploaded(true);
+    // Function to initialize the widget
+    const initWidget = () => {
+      if (typeof window.cloudinary !== 'undefined') {
+        const widget = window.cloudinary.createUploadWidget(
+          {
+            cloudName: 'dz1qipahy',
+            uploadPreset: 'nrvaimia',
+            sources: ['local', 'url', 'camera'],
+          },
+          (error: any, result: { event: string; info: { secure_url: string; }; }) => {
+            if (result.event === 'success') {
+              setState(prevState => ({
+                ...prevState,
+                imageUrl: result.info.secure_url,
+              }));
+              setIsUploaded(true);
+            }
+          },
+        );
+
+        return widget;
+      } else {
+        console.error('Cloudinary SDK not loaded');
+      }
+    };
+
+    // Check if Cloudinary SDK is available and then initialize the widget
+    if (typeof window !== 'undefined') {
+      const widget = initWidget();
+
+      // Function to open the widget
+      const openWidget = () => {
+        if (widget) {
+          widget.open();
+        } else {
+          console.error('Failed to initialize Cloudinary Upload Widget');
         }
-      },
-    );
-  } else {
-    console.error('Cloudinary SDK not loaded');
-  }
-}, []);
+      };
+    }
+  }, [setState]);
 
-
-  // RENDER:
   return (
     <button
-      className={isUploaded ? "uploaded" : "no-fill-btn"}
-      onClick={() => widgetRef.current.open()}
+      id="upload_widget_opener"
+      className={isUploaded ? 'uploaded' : 'no-fill-btn'}
     >
-      {isUploaded ? "Photo Uploaded" : "Upload Recipe Photo"}
+      {isUploaded ? 'Photo Uploaded' : 'Upload Recipe Photo'}
     </button>
   );
-}
+};
 
 export default UploadWidget;
