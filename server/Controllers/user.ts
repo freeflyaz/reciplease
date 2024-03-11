@@ -6,7 +6,6 @@ import { Request, Response } from "express";
 //gabe If you use this loud handler type then the email and the password are complaining I think I made my life a little harder on The other controller file because of this maybe check it would it help you with!
 const registerUser = async (req: Request, res : Response) => {
   const { email, password } = req.body;
-
   // Check if user` already exists:
   const user = await userModel.findOne({ email: email });
   if (user)
@@ -23,6 +22,7 @@ const registerUser = async (req: Request, res : Response) => {
       password: hash,
     });
     await newUser.save();
+    console.log('Request email: ', email, 'Request password: ', password);
 
     res.status(201).send({ success: true, message: "User created" });
   } catch (error) {

@@ -14,8 +14,18 @@ describe('Auth component', () => {
           <Auth/>
           </Router>
       );
-      const addButton = screen.getByTestId('login-button');
-      expect(addButton).toHaveTextContent(/log in/i);
+
+  
+      // Access the button by role with name "Add recipe"
+      const addButton = screen.getAllByRole('button', { name: /log in/i });
+  
+      // Assertions
+     
+      //expect(addButton).toHaveLength(1)
+      expect(addButton).length(2);
+      
+    //   ('Add recipe');
+
     });
 });
 
