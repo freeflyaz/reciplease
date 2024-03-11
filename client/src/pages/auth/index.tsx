@@ -26,6 +26,7 @@ function Auth() {
           <button
             className={`btn-category ${selectedButton === "Log In" ? "active" : ""}`}
             onClick={() => handleClick("Log In")}
+            data-testid="login-button"
           >
             Log In
           </button>

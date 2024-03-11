@@ -95,6 +95,7 @@ const CreateRecipe: React.FC = () => {
           setState={setState}
           handleChange={handleChange}
           setFormSection={setFormSection}
+          
         />
       )}
       {formSection === "Ingredients" && (
