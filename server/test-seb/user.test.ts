@@ -1,5 +1,4 @@
 import request from './jest.setup';
-import mongoose from '../test_db';
 
 beforeAll(async () => {
   const userData = { firstName: 'test', email: 'test@example.com', password: 'password123' };
@@ -31,5 +30,4 @@ describe('User Registration and Login', () => {
     expect(response.body.success).toBe(false);
   });
 
-  // Add more tests here...
 });
