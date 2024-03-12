@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
+import { FormState } from './form-details';
 
 interface UploadWidgetProps {
-  setState: React.Dispatch<React.SetStateAction<{ imageUrl: string }>>;
+  setState: React.Dispatch<React.SetStateAction<FormState>>;
 }
 
 const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
   const [isUploaded, setIsUploaded] = useState(false);
-
+  // USE REFS:
+  const cloudinaryRef = useRef<Cloudinary>();
+  const widgetRef = useRef();
   useEffect(() => {
     // Function to initialize the widget
     const initWidget = () => {
-      if (typeof window.cloudinary !== 'undefined') {
-        const widget = window.cloudinary.createUploadWidget(
+      if (window.cloudinary !== undefined) {
+        cloudinaryRef.current = window.cloudinary;
+        widgetRef.current = window.cloudinary.createUploadWidget(
           {
             cloudName: 'dz1qipahy',
             uploadPreset: 'nrvaimia',
@@ -32,7 +36,7 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
           }
         );
 
-        return widget;
+        return widgetRef.current;
       } else {
         console.error('Cloudinary SDK not loaded');
       }
@@ -48,6 +52,7 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
     <button
       id='upload_widget_opener'
       className={isUploaded ? 'uploaded' : 'no-fill-btn'}
+      onClick={() => widgetRef.current.open()}
     >
       {isUploaded ? 'Photo Uploaded' : 'Upload Recipe Photo'}
     </button>

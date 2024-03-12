@@ -3,7 +3,7 @@ import FormNavigation from './form-navigation';
 import { useStore } from '../../zustand/store';
 import UploadWidget from './upload-widget';
 
-interface FormState {
+export interface FormState {
   category: string;
   servings: number;
   duration: number;
@@ -37,10 +37,10 @@ const FormDetails: React.FC<FormDetailsProps> = ({
     <div className='create-recipe-form'>
       <form>
         <h2>What&apos;s on the menu, Chef?</h2>
-        <FormNavigation setFormSection={setFormSection} formSection={''} />
+        <FormNavigation setFormSection={setFormSection} />
         <div className='create-recipe-form-details'>
           <div className='form-column'>
-            <UploadWidget state={state} setState={setState} />
+            <UploadWidget setState={setState} />
 
             <select
               name='category'
