@@ -1,10 +1,8 @@
-import { describe,it,expect,vi,beforeEach, Mock } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { useStore } from "../../../src/zustand/store";
-import FormNavigation
-
-from "../../../src/pages/create-recipe/form-navigation";
+import { useStore } from '../../../src/zustand/store';
+import FormNavigation from '../../../src/pages/create-recipe/form-navigation';
 
 // Mock useStore hook from Zustand
 vi.mock('../../../src/zustand/store', () => ({
@@ -16,7 +14,7 @@ vi.mock('../../../src/zustand/store', () => ({
 
 describe('FormNavigation component interactions', () => {
   const setFormSectionMock = vi.fn();
-  let updateActiveNavButtonMock: Mock<any, any>;
+  let updateActiveNavButtonMock: Mock<never, never>;
 
   beforeEach(() => {
     setFormSectionMock.mockClear();
@@ -29,7 +27,9 @@ describe('FormNavigation component interactions', () => {
   });
 
   it('calls setFormSection and updateActiveNavButton on button click', async () => {
-    render(<FormNavigation formSection="" setFormSection={setFormSectionMock} />);
+    render(
+      <FormNavigation formSection='' setFormSection={setFormSectionMock} />
+    );
 
     // Simulate clicking the 'Ingredients' navigation button
     fireEvent.click(screen.getByText('2'));

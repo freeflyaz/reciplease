@@ -1,14 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UploadWidget from '../../../src/pages/create-recipe/upload-widget';
 
 // Mocking global Cloudinary object
-let simulateSuccess; 
 global.cloudinary = {
   createUploadWidget: vi.fn((config, callback) => {
     // Assign the simulateSuccess function for manual invocation
-    simulateSuccess = () => callback(null, { event: 'success', info: { secure_url: 'https://example.com/uploaded.jpg' } });
+    simulateSuccess = () =>
+      callback(null, {
+        event: 'success',
+        info: { secure_url: 'https://example.com/uploaded.jpg' },
+      });
 
     return { open: vi.fn() }; // Return a mock widget with an open method
   }),
@@ -25,6 +28,4 @@ describe('UploadWidget component', () => {
     render(<UploadWidget setState={setStateMock} />);
     expect(global.cloudinary.createUploadWidget).toHaveBeenCalled();
   });
-
-
 });

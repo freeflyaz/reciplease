@@ -1,23 +1,23 @@
-import { useStore } from "../../zustand/store";
+import React from 'react';
+import { useStore } from '../../zustand/store';
 
 interface FormNavigationProps {
-  formSection: string;
   setFormSection: (formSection: string) => void;
 }
 
-const FormNavigation: React.FC<FormNavigationProps> = ({ formSection, setFormSection }) => {
+const FormNavigation: React.FC<FormNavigationProps> = ({ setFormSection }) => {
   // ZUSTAND:
   const activeNavButton = useStore((state) => state.activeNavButton);
   const { updateActiveNavButton } = useStore();
 
   // RENDER:
   return (
-    <div className="form-nav-container">
-      <div className="form-nav">
+    <div className='form-nav-container'>
+      <div className='form-nav'>
         <button
-          className={`form-nav-btn ${activeNavButton === 1 ? "active-nav-btn" : ""}`}
+          className={`form-nav-btn ${activeNavButton === 1 ? 'active-nav-btn' : ''}`}
           onClick={() => {
-            setFormSection("Details");
+            setFormSection('Details');
             updateActiveNavButton(1);
           }}
         >
@@ -25,11 +25,11 @@ const FormNavigation: React.FC<FormNavigationProps> = ({ formSection, setFormSec
         </button>
         <p>Details</p>
       </div>
-      <div className="form-nav">
+      <div className='form-nav'>
         <button
-          className={`form-nav-btn ${activeNavButton === 2 ? "active-nav-btn" : ""}`}
+          className={`form-nav-btn ${activeNavButton === 2 ? 'active-nav-btn' : ''}`}
           onClick={() => {
-            setFormSection("Ingredients");
+            setFormSection('Ingredients');
             updateActiveNavButton(2);
           }}
         >
@@ -37,11 +37,11 @@ const FormNavigation: React.FC<FormNavigationProps> = ({ formSection, setFormSec
         </button>
         <p>Ingredients</p>
       </div>
-      <div className="form-nav">
+      <div className='form-nav'>
         <button
-          className={`form-nav-btn ${activeNavButton === 3 ? "active-nav-btn" : ""}`}
+          className={`form-nav-btn ${activeNavButton === 3 ? 'active-nav-btn' : ''}`}
           onClick={() => {
-            setFormSection("Method");
+            setFormSection('Method');
             updateActiveNavButton(3);
           }}
         >
@@ -51,6 +51,6 @@ const FormNavigation: React.FC<FormNavigationProps> = ({ formSection, setFormSec
       </div>
     </div>
   );
-}
+};
 
 export default FormNavigation;

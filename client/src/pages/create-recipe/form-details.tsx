@@ -1,3 +1,4 @@
+import React from 'react';
 import FormNavigation from './form-navigation';
 import { useStore } from '../../zustand/store';
 import UploadWidget from './upload-widget';
@@ -14,41 +15,50 @@ interface FormState {
 interface FormDetailsProps {
   state: FormState;
   setState: React.Dispatch<React.SetStateAction<FormState>>;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  handleChange: (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
   setFormSection: (section: string) => void;
 }
 
-const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange, setFormSection }) => {
+const FormDetails: React.FC<FormDetailsProps> = ({
+  state,
+  setState,
+  handleChange,
+  setFormSection,
+}) => {
   // Zustand
   const { updateActiveNavButton } = useStore();
 
   // RENDER:
   return (
-    <div className="create-recipe-form">
+    <div className='create-recipe-form'>
       <form>
-        <h2>What's on the menu, Chef?</h2>
+        <h2>What&apos;s on the menu, Chef?</h2>
         <FormNavigation setFormSection={setFormSection} formSection={''} />
-        <div className="create-recipe-form-details">
-          <div className="form-column">
+        <div className='create-recipe-form-details'>
+          <div className='form-column'>
             <UploadWidget state={state} setState={setState} />
 
             <select
-              name="category"
+              name='category'
               value={state?.category}
               onChange={handleChange}
             >
-              <option value="Starters">Starter</option>
-              <option value="Mains">Main</option>
-              <option value="Sides">Side</option>
-              <option value="Desserts">Dessert</option>
-              <option value="Bakery">Bakery</option>
-              <option value="Drinks">Drink</option>
+              <option value='Starters'>Starter</option>
+              <option value='Mains'>Main</option>
+              <option value='Sides'>Side</option>
+              <option value='Desserts'>Dessert</option>
+              <option value='Bakery'>Bakery</option>
+              <option value='Drinks'>Drink</option>
             </select>
 
             <input
-              name="servings"
-              type="number"
-              placeholder="Number of servings"
+              name='servings'
+              type='number'
+              placeholder='Number of servings'
               min={1}
               value={state?.servings}
               onChange={handleChange}
@@ -56,9 +66,9 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
             />
 
             <input
-              name="duration"
-              type="number"
-              placeholder="Duration (in minutes)"
+              name='duration'
+              type='number'
+              placeholder='Duration (in minutes)'
               min={1}
               value={state?.duration}
               onChange={handleChange}
@@ -66,11 +76,11 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
             />
           </div>
 
-          <div className="form-column">
+          <div className='form-column'>
             <input
-              name="title"
-              type="text"
-              placeholder="Recipe Title"
+              name='title'
+              type='text'
+              placeholder='Recipe Title'
               maxLength={70}
               value={state?.title}
               onChange={handleChange}
@@ -78,9 +88,9 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
             />
 
             <input
-              name="shortDescription"
-              type="text"
-              placeholder="Recipe Short Description"
+              name='shortDescription'
+              type='text'
+              placeholder='Recipe Short Description'
               maxLength={70}
               value={state?.shortDescription}
               onChange={handleChange}
@@ -88,15 +98,15 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
             />
 
             <textarea
-              name="longDescription"
-              placeholder="Recipe Long Description"
+              name='longDescription'
+              placeholder='Recipe Long Description'
               value={state?.longDescription}
               onChange={handleChange}
               required
             />
 
             <button
-              type="button"
+              type='button'
               onClick={() => {
                 setFormSection('Ingredients');
                 updateActiveNavButton(2);
@@ -109,6 +119,6 @@ const FormDetails: React.FC<FormDetailsProps> = ({ state, setState, handleChange
       </form>
     </div>
   );
-}
+};
 
 export default FormDetails;

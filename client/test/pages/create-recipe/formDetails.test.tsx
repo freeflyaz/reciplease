@@ -1,14 +1,22 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom'; 
+import '@testing-library/jest-dom';
 import FormDetails from '../../../src/pages/create-recipe/form-details';
 import { useStore } from '../../../src/zustand/store';
 
 // Mocking Cloudinary's createUploadWidget function
 global.cloudinary = {
-  createUploadWidget: (_config: any, callback: (arg0: null, arg1: { event: string; info: { secure_url: string; }; }) => void) => () => {
-    callback(null, { event: 'success', info: { secure_url: 'mocked_url' } });
-  }
+  createUploadWidget:
+    (
+      _config: never,
+      callback: (
+        arg0: null,
+        arg1: { event: string; info: { secure_url: string } }
+      ) => void
+    ) =>
+    () => {
+      callback(null, { event: 'success', info: { secure_url: 'mocked_url' } });
+    },
 };
 
 // Mock useStore hook from Zustand
@@ -20,7 +28,7 @@ vi.mock('../../../src/zustand/store', () => ({
 
 const mockSetFormSection = vi.fn();
 
-//initial state 
+//initial state
 const initialState = {
   category: '',
   servings: 1,

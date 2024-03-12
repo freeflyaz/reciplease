@@ -8,7 +8,7 @@ import durationIcon from "../../assets/duration-icon.svg";
 
 function RecipeDetail() {
   // STATES:
-  let [selectedButton, setSelectedButton] = useState("Ingredients");
+  const [selectedButton, setSelectedButton] = useState("Ingredients");
 
   // ZUSTAND:
   const allRecipes = useStore((state) => state.recipes);
