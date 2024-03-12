@@ -1,8 +1,9 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi  } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from "react-router-dom";
 import '@testing-library/jest-dom/vitest';
 import Dashboard from '../../../src/pages/dashboard';
+import userEvent from '@testing-library/user-event';
 
 // // Mock the Zustand store
 // vi.mock('./useStore', () => ({
@@ -89,5 +90,45 @@ describe('Dashboard Component', () => {
     expect(await screen.findByText('Colita de Cuadril')).toBeInTheDocument();
     expect(await screen.findByText('Volcan de Chocolate')).toBeInTheDocument();
     // Add any additional assertions here
+  });
+
+  it('clicks on the "Mains" category button', async () => {
+    render(
+      <Router>
+        <Dashboard />
+      </Router>
+    );
+    // Find the "Mains" button and click it
+    const mainsButton = screen.getByRole('button', { name: 'Mains' });
+    fireEvent.click(mainsButton);
+  });
+
+  it('filtering "Mains" category button works', async () => {
+    render(
+      <Router>
+        <Dashboard />
+      </Router>
+    );
+    // Find the "Mains" button and click it
+    const mainsButton = screen.getByRole('button', { name: 'Mains' });
+    fireEvent.click(mainsButton);
+    expect(await screen.findByText('Colita de Cuadril')).toBeInTheDocument();
+    //Excpect not to be
+    expect(screen.queryByText('Volcan de Chocolate')).not.toBeInTheDocument();
+  });
+
+  it('allows user to type in the search bar and filter', async () => {
+    render(
+      <Router>
+        <Dashboard />
+      </Router>
+    );
+    // Find the search input
+    const searchInput = screen.getByPlaceholderText('Search here...');
+    expect(searchInput).toBeInTheDocument();
+    // Type "colita" into the search input
+    await userEvent.type(searchInput, 'colita');
+    expect(await screen.findByText('Colita de Cuadril')).toBeInTheDocument();
+    expect(screen.queryByText('Volcan de Chocolate')).not.toBeInTheDocument();
   });
 });

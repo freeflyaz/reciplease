@@ -1,13 +1,12 @@
-import FormDetails from './form-details';
-import FormIngredients from './form-ingredients';
-import FormMethod from './form-method';
-import Navbar from '../../components/navbar';
-import { useState } from 'react';
-import { createRecipe } from '../../services/api-service';
-import { ToastContainer, toast } from 'react-toastify';
-import { useStore } from '../../zustand/store';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
+import FormDetails from "./form-details";
+import FormIngredients from "./form-ingredients";
+import FormMethod from "./form-method";
+import Navbar from "../../components/navbar";
+import { useState } from "react";
+import { createRecipe } from "../../services/api-service";
+import { ToastContainer, toast } from "react-toastify";
+import { useStore } from "../../zustand/store";
+import { useNavigate } from "react-router-dom";
 
 interface RecipeState {
   title: string;

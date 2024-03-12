@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env TEST_ENV=true jest",
     "start": "nodemon --exec ts-node index.ts"
   },
   "keywords": [],
@@ -14,7 +14,8 @@
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "mongoose": "^8.2.0"
+    "mongoose": "^8.2.0",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -22,6 +23,14 @@
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.25",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.2",
+    "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "prettier-eslint": "^16.3.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2"
   }
 }
