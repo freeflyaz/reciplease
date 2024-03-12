@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import '@testing-library/jest-dom/vitest';
 import Dashboard from '../../../src/pages/dashboard';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 
 // // Mock the Zustand store
 // vi.mock('./useStore', () => ({
