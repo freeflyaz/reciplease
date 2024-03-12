@@ -15,7 +15,7 @@ const CategoryWrapped: React.FC<CategoryWrappedProps> = ({ categoryTitle }) => {
   const recipesByCategory = recipes.length
     ? recipes.filter((recipe) => recipe.category === categoryTitle)
     : [];
-  let favouriteRecipes = recipes.length
+  const favouriteRecipes = recipes.length
     ? recipes.filter((recipe) => recipe.favouritedBy.indexOf(userID) !== -1)
     : [];
 
