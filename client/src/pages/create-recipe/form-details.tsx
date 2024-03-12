@@ -4,12 +4,15 @@ import { useStore } from '../../zustand/store';
 import UploadWidget from './upload-widget';
 
 export interface FormState {
-  category: string;
-  servings: number;
-  duration: number;
   title: string;
   shortDescription: string;
   longDescription: string;
+  imageUrl: string;
+  category: string;
+  servings: number;
+  duration: number;
+  ingredients: string[];
+  method: string[];
 }
 
 interface FormDetailsProps {
