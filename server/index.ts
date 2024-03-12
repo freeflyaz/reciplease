@@ -2,8 +2,7 @@ import express, { Express, Request, Response } from "express";
 import { Error } from "mongoose";
 import cors from "cors";
 import router from "./Routes/router";
-import {connect } from './db';
-import { connected } from "process";
+import { connect } from './db';
 
 const app: Express = express();
 const SERVER_PORT: number = 3000;

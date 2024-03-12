@@ -1,10 +1,10 @@
-import request from './setup';
-import mongoose from '../server/db';
+import request from './jest.setup';
+import mongoose from '../server/test_db';
 
+beforeAll(async () => {
+  // If you're using Mongoose, for example, you can disconnect like this:
+});
 afterAll(async () => {
-  // If you have a method to close your server, call it here
-  // e.g., server.close();
-  
   // If you're using Mongoose, for example, you can disconnect like this:
   await mongoose.disconnect();
 });
@@ -24,6 +24,13 @@ describe('User Registration and Login', () => {
     const response = await request.post('/register').send(userData);
     expect(response.status).toBe(409);
     expect(response.body.success).toBe(false);
+  });
+
+  it('should log in a user with an existing email', async () => {
+    const userData = { email: 'test@example.com', password: 'password123' };
+    const response = await request.post('/login').send(userData);
+    expect(response.status).toBe(200);
+    expect(response.body.success).toBe(true);
   });
 
   it('should fail to log in a user with an existing email', async () => {

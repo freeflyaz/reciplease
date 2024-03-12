@@ -1,0 +1,25 @@
+{
+  "name": "reciplease",
+  "version": "1.0.0",
+  "description": "A full-stack MERN app which acts as a central repository for the user's recipes",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env TEST_ENV=true jest"
+  },
+  "keywords": [],
+  "author": "Anna Ewbank",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/supertest": "^6.0.2",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "prettier-eslint": "^16.3.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
