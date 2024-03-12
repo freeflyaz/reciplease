@@ -13,6 +13,6 @@ interface Cloudinary {
 }
 
 // Extending the Window interface to include cloudinary
-interface Window {
+export interface Window {
   cloudinary: Cloudinary;
 }
