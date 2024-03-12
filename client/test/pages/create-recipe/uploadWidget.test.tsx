@@ -2,8 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UploadWidget from '../../../src/pages/create-recipe/upload-widget';
+import React from 'react';
 
 // Mocking global Cloudinary object
+let simulateSuccess;
 global.cloudinary = {
   createUploadWidget: vi.fn((config, callback) => {
     // Assign the simulateSuccess function for manual invocation

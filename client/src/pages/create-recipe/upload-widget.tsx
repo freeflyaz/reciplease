@@ -1,6 +1,13 @@
 import React, { useRef } from 'react';
 import { useEffect, useState } from 'react';
 import { FormState } from './form-details';
+import { Window } from '../../../Types/global';
+
+declare global {
+  interface Window {
+    cloudinary: any;
+  }
+}
 
 interface UploadWidgetProps {
   setState: React.Dispatch<React.SetStateAction<FormState>>;
@@ -9,8 +16,8 @@ interface UploadWidgetProps {
 const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
   const [isUploaded, setIsUploaded] = useState(false);
   // USE REFS:
-  const cloudinaryRef = useRef<Cloudinary>();
-  const widgetRef = useRef();
+  const cloudinaryRef = useRef<Window>();
+  const widgetRef = useRef<any>(null);
   useEffect(() => {
     // Function to initialize the widget
     const initWidget = () => {
