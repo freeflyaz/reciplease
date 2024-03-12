@@ -4,7 +4,7 @@ import FilterButtons from "./filter-buttons";
 import CategoryCarousel from "./category-carousel";
 import CategoryWrapped from "./category-wrapped";
 import { Recipe, useStore } from "../../zustand/store";
-import React, { useState, useEffect, FC } from "react";
+import { useState, useEffect, FC } from "react";
 import { getRecipes } from "../../services/api-service";
 import RecipeCard from "../../components/recipe-card";
 import { StoreState } from "../../zustand/store";
