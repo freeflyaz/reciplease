@@ -60,9 +60,10 @@ const LogInForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res: LoginResponse = await login(loginData);
-      const { success, message, user } = res;
-
+    const res: LoginResponse = await login(loginData);
+    const { success, message, user } = res;
+    
+      
       if (success) {
         handleSuccess(
           `Welcome back Chef ${user.firstName}! Let's get cooking...`
@@ -75,8 +76,9 @@ const LogInForm: React.FC = () => {
       }
     } catch (error) {
       // Assuming 'error' is an instance of an Error and it contains a response object.
-      const serverMessage = error.response?.data?.message; // Adjust based on how your HTTP client structures error objects
-      handleError(serverMessage || 'Username or password is incorrect..');
+      //const serverMessage = error.response?.data?.message; // Adjust based on how your HTTP client structures error objects
+     // handleError(serverMessage || 'Username or password is incorrect..');
+      console.error(error);
     }
   };
 

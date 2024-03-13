@@ -44,12 +44,13 @@ export async function login(user: User) {
       body: JSON.stringify(user),
     });
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+     // throw new Error(`HTTP error! status: ${res.status}`);
+     return res.json();
     }
     return await res.json();
   } catch (error) {
     console.error(error);
-    throw error;
+    //throw error;
   }
 }
 
