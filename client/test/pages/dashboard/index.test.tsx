@@ -6,15 +6,6 @@ import Dashboard from '../../../src/pages/dashboard';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-// // Mock the Zustand store
-// vi.mock('./useStore', () => ({
-//   __esModule: true,
-//   default: vi.fn(() => ({
-//     userId: 'test-user-id',
-//     // Mock other parts of your store as needed
-//   })),
-// }));
-
 vi.mock('../../../src/services/api-service', () => ({
   getRecipes: vi.fn().mockResolvedValue({
     data: [

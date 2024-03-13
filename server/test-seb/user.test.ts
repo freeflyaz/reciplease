@@ -19,6 +19,8 @@ describe('User Registration and Login', () => {
   it('should log in a user with an existing email', async () => {
     const userData = { email: 'test@example.com', password: 'password123' };
     const response = await request.post('/login').send(userData);
+    const userID = response.body.user._id;
+    console.log('User ID is: ', userID);
     expect(response.status).toBe(200);
     expect(response.body.success).toBe(true);
   });
@@ -29,8 +31,6 @@ describe('User Registration and Login', () => {
     expect(response.status).toBe(401);
     expect(response.body.success).toBe(false);
   });
-
-
   
   it('should get a recipe for a user with id number ', async () => {
     const userData = '65f06c83b7a88402af8c84be';
@@ -40,6 +40,36 @@ describe('User Registration and Login', () => {
    expect(response.status).toBe(200);
    expect(response.body.success).toBe(true);
   });
+
+  it('should add the recipe', async () => {
+    const userData = { email: 'test@example.com', password: 'password123' };
+    const user = await request.post('/login').send(userData);
+    const userID = user.body.user._id;
+    const recipeData = {
+      recipe: {
+        title: "Colita de Cuadril",
+        shortDescription: "Carne de Res",
+        longDescription: "Tri-tip",
+        imageUrl: "https://res.cloudinary.com/dz1qipahy/image/upload/v1709901962/vl2n6sk7j0vkjdtbjeiz.jpg",
+        category: "Mains",
+        servings: 4,
+        duration: 30,
+        ingredients: [
+          "Chimichurry",
+          "Tri-tip",
+          "coal"
+        ],
+        method: [
+          "Cut diagonally"
+        ]
+      },
+      id: userID
+    };
+    const response = await request.post('/create-recipe').send(recipeData);
+    expect(response.status).toBe(201);
+    expect(response.body.success).toBe(true);
+  });
+
 });
 
 
