@@ -23,7 +23,6 @@ const registerUser = async (req: Request, res : Response) => {
       password: hash,
     });
     await newUser.save();
-    console.log('Request email: ', email, 'Request password: ', password);
 
     res.status(201).send({ success: true, message: "User created" });
   } catch (error) {
