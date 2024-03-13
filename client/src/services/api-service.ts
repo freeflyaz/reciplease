@@ -52,7 +52,7 @@ export async function login(user: User) {
   }
 }
 
-export async function getRecipes<T>(userId: string): Promise<T> {
+export async function getRecipes(userId: string)  {
   try {
     console.log('This is the user ID: ', userId);
     const res = await fetch(`${BASE_URL}/dashboard/${userId}`);
