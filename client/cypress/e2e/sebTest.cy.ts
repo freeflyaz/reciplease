@@ -1,4 +1,11 @@
-describe('Login Form', () => {
+describe('Register and Login Form', () => {
+  it('Succesfully Registers with admin, admin', () => {
+    cy.visit('http://localhost:5173/');
+    cy.contains('button', 'Sign Up').click();
+    cy.get('input[name="First Name"]').type('admin');
+    cy.get('input[name="email"]').type('admin');
+    cy.get('input[name="password"]').type('admin');
+  });
   it('successfully logs in', () => {
     // Visit the page where the login form is located
     cy.visit('http://localhost:5173/');
