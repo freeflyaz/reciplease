@@ -35,16 +35,21 @@ const loginUser = async (req: Request, res : Response) => {
   try {
     // Find the user and check their password is correct:
     const user = await userModel.findOne({ email: email });
-    if (!user) throw new Error();
+    
+    if (!user) {
+      return res.status(401).send({ success: false, message: "Username or password is incorrect" });
+    }
     
     const validatedPass = await bcrypt.compare(password, user.password);
-    if (!validatedPass) throw new Error();
+    
+    if (!validatedPass) {
+      return res.status(401).send({ success: false, message: "Username or password is incorrect" });
+    }
 
     res.status(200).send({ success: true, user });
   } catch (error) {
-    res
-      .status(401)
-      .send({ success: false, message: "Username or password is incorrect" });
+    console.error(error); 
+    res.status(500).send({ success: false, message: "An unexpected error occurred" });
   }
 };
 

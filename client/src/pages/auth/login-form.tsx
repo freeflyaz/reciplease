@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useStore } from "../../zustand/store";
-import { useNavigate } from "react-router-dom";
-import { login } from "../../services/api-service";
-import { ToastContainer, toast } from "react-toastify";
+import { useState } from 'react';
+import { useStore } from '../../zustand/store';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../services/api-service';
+import { ToastContainer, toast } from 'react-toastify';
 
 interface LoginData {
   email: string;
@@ -19,8 +19,8 @@ interface LoginResponse {
 }
 
 const initialLoginData: LoginData = {
-  email: "",
-  password: "",
+  email: '',
+  password: ''
 };
 
 const LogInForm: React.FC = () => {
@@ -39,15 +39,17 @@ const LogInForm: React.FC = () => {
     const { name, value } = e.target;
     setLoginData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value
     }));
-  }
+  };
 
   // Error pop-up if user's details are incorrect:
-  const handleError = (err: string) => toast.error(err, { position: "top-right" });
+  const handleError = (err: string) =>
+    toast.error(err, { position: 'top-right' });
 
   // Success pop-up if user's details are accepted:
-  const handleSuccess = (msg: string) => toast.success(msg, { position: "top-right" });
+  const handleSuccess = (msg: string) =>
+    toast.success(msg, { position: 'top-right' });
 
   // Reset form:
   function resetForm() {
@@ -57,21 +59,26 @@ const LogInForm: React.FC = () => {
   // On submit, send details to the server:
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    try {
+      const res: LoginResponse = await login(loginData);
+      const { success, message, user } = res;
 
-    const res: LoginResponse = await login(loginData);
-    const { success, message, user } = res;
-
-    if (success) {
-      handleSuccess(
-        `Welcome back Chef ${user.firstName}! Let's get cooking...`,
-      );
-      resetForm();
-      updateUserID(user._id);
-      setTimeout(() => navigate("/dashboard"), 1500);
-    } else {
-      handleError(message);
+      if (success) {
+        handleSuccess(
+          `Welcome back Chef ${user.firstName}! Let's get cooking...`
+        );
+        resetForm();
+        updateUserID(user._id);
+        setTimeout(() => navigate('/dashboard'), 1500);
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      // Assuming 'error' is an instance of an Error and it contains a response object.
+      const serverMessage = error.response?.data?.message; // Adjust based on how your HTTP client structures error objects
+      handleError(serverMessage || 'Username or password is incorrect..');
     }
-  }
+  };
 
   // RENDER:
   return (
@@ -103,6 +110,6 @@ const LogInForm: React.FC = () => {
       />
     </>
   );
-}
+};
 
 export default LogInForm;
