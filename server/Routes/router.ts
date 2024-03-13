@@ -8,6 +8,7 @@ const router: Router = express.Router();
 // userController routes:
 router.post("/register", userController.registerUser);
 router.post("/login", userController.loginUser);
+router.delete("/delete-user/:userId", userController.deleteUser);
 // router.post("/logout", userController.logoutUser);
 
 // recipeController routes:

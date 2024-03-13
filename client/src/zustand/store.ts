@@ -29,8 +29,8 @@ export interface Recipe {
   category: string;
   servings: number;
   duration: number;
-  ingredients: string;
-  method: string;
+  ingredients: string[];
+  method: string[];
   favouritedBy: string[];
 }
 // Define User
