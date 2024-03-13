@@ -6,11 +6,16 @@ describe('Register and Login Form', () => {
     cy.get('input[name="firstName"]').type('admin');
     cy.get('input[name="email"]').type('admin');
     cy.get('input[name="password"]').type('admin');
-    cy.get('.auth-form', { timeout: 2000 } ).submit();
-    cy.intercept('POST', '/register').as('registrationAttempt');
-    cy.wait('@registrationAttempt').then((interception) => {
-      if (interception.response) {
-        expect(interception.response.statusCode).to.equal(201); // Adjust according to the expected status code
+
+    cy.intercept({
+      method: 'POST',
+      url: 'http://localhost:3000/register', 
+    }).as('registrationAttempt');
+    
+    cy.get('.auth-form', { timeout: 10000 } ).submit();
+    cy.wait('@registrationAttempt').then(({ response }) => {
+      if (response) {
+        expect(response.statusCode).to.equal(201); // Adjust according to the expected status code
       } else {
         throw new Error('Response was undefined');
       }
