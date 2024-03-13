@@ -11,7 +11,7 @@ const getRecipes: RouteHandler = async (req, res) => {
   try {
     // Find user and populate their recipes array:
     const id = req.params.id;
-
+    console.log('aqui:', req.params.id);
     if (!id) {
       res.status(400).json({ data: null, message: "Valid ID required" });
     }
@@ -26,6 +26,8 @@ const getRecipes: RouteHandler = async (req, res) => {
     res.status(200).send({
       data: user.recipes,
       message: "Successfully retrieved recipes for user",
+      success: true
+
     });
   }
 
