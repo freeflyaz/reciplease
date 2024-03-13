@@ -1,11 +1,20 @@
 describe('Register and Login Form', () => {
+
   it('Succesfully Registers with admin, admin', () => {
     cy.visit('http://localhost:5173/');
     cy.contains('button', 'Sign Up').click();
     cy.get('input[name="firstName"]').type('admin');
     cy.get('input[name="email"]').type('admin');
     cy.get('input[name="password"]').type('admin');
-    cy.get('.auth-form').submit();
+    cy.get('.auth-form', { timeout: 2000 } ).submit();
+    cy.intercept('POST', '/register').as('registrationAttempt');
+    cy.wait('@registrationAttempt').then((interception) => {
+      if (interception.response) {
+        expect(interception.response.statusCode).to.equal(201); // Adjust according to the expected status code
+      } else {
+        throw new Error('Response was undefined');
+      }
+    });
   });
   it('successfully logs in', () => {
     // Visit the page where the login form is located
@@ -24,18 +33,23 @@ describe('Register and Login Form', () => {
     cy.contains('button', 'Desserts').should('be.visible');
     cy.contains('button', 'Favourites').should('be.visible');
   });
-  it('should successfully log-out', () => {
+  it('should successfully delete the user', () => {
     cy.visit('http://localhost:5173/');
+    // Fill in the email and password fields
+    cy.intercept('POST', '/login').as('loginUser');
     cy.get('input[name="email"]').type('admin');
     cy.get('input[name="password"]').type('admin');
+    // Submit the form
     cy.get('.auth-form').submit();
-
-    cy.contains('button', 'Add recipe').should('be.visible');
-    cy.contains('button', 'Add recipe').click();
-
-    // Wait for the URL to change to /create-recipe
-    cy.url().should('include', '/create-recipe');
-    // Assert that the text "on the menu" is visible on the page
-    cy.contains('button', 'Upload Recipe').click();
+    
+    cy.wait('@loginUser').then(({ response }) => {
+      if (response) {
+        const userId = response.body.user._id; // Adjust this path to where the userId is located in your response
+        console.log('Extracted userId:', userId);
+        cy.request('DELETE', `http://localhost:3000/delete-user/${userId}`).then((response) => {
+          expect(response.status).to.eq(200); // Assert the expected status code
+        });
+      }
+    });
   });
 });
