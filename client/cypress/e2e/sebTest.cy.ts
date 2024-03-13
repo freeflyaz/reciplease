@@ -12,7 +12,7 @@ describe('Register and Login Form', () => {
       url: 'http://localhost:3000/register', 
     }).as('registrationAttempt');
     
-    cy.get('.auth-form', { timeout: 10000 } ).submit();
+    cy.get('.auth-form', { timeout: 2000 } ).submit();
     cy.wait('@registrationAttempt').then(({ response }) => {
       if (response) {
         expect(response.statusCode).to.equal(201); // Adjust according to the expected status code
@@ -49,7 +49,7 @@ describe('Register and Login Form', () => {
     
     cy.wait('@loginUser').then(({ response }) => {
       if (response) {
-        const userId = response.body.user._id; // Adjust this path to where the userId is located in your response
+        const userId = response.body.user._id;
         console.log('Extracted userId:', userId);
         cy.request('DELETE', `http://localhost:3000/delete-user/${userId}`).then((response) => {
           expect(response.status).to.eq(200); // Assert the expected status code
