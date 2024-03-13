@@ -1,19 +1,18 @@
-import LogInForm from "./login-form";
-import RegisterForm from "./register-form";
-import React, { useState } from "react";
-import recipleaseLogo from "../../assets/reciplease-logo.svg";
+import LogInForm from './login-form';
+import RegisterForm from './register-form';
+import { useState } from 'react';
+import recipleaseLogo from '../../assets/reciplease-logo.svg';
+import { AuthButton } from './AuthButton';
 
 function Auth() {
-  // STATES:
-  let [selectedButton, setSelectedButton] = useState<"Log In" | "Sign Up">("Log In");
+  const [selectedButton, setSelectedButton] = useState<'Log In' | 'Sign Up'>(
+    'Log In'
+  );
 
-  // FUNCTIONS:
-  function handleClick(buttonName: "Log In" | "Sign Up") {
+  function handleClick(buttonName: 'Log In' | 'Sign Up') {
     setSelectedButton(buttonName);
-    console.log('Hello');
-  };
+  }
 
-  // RENDER:
   return (
     <div className="auth-container">
       <div className="auth-form-container">
@@ -23,22 +22,20 @@ function Auth() {
           className="reciplease-logo"
         />
         <div className="toggle-btns">
-          <button
-            className={`btn-category ${selectedButton === "Log In" ? "active" : ""}`}
-            onClick={() => handleClick("Log In")}
-            data-testid="login-button"
-          >
-            Log In
-          </button>
-          <button
-            className={`btn-category ${selectedButton === "Sign Up" ? "active" : ""}`}
-            onClick={() => handleClick("Sign Up")}
-          >
-            Sign Up
-          </button>
+          <AuthButton
+            name="Log In"
+            isActive={selectedButton === 'Log In'}
+            onClick={() => handleClick('Log In')}
+          />
+
+          <AuthButton
+            name="Sign Up"
+            isActive={selectedButton === 'Sign Up'}
+            onClick={() => handleClick('Sign Up')}
+          />
         </div>
-        {selectedButton === "Log In" && <LogInForm />}
-        {selectedButton === "Sign Up" && <RegisterForm />}
+        {selectedButton === 'Log In' && <LogInForm />}
+        {selectedButton === 'Sign Up' && <RegisterForm />}
       </div>
     </div>
   );
