@@ -30,7 +30,6 @@ export async function register(user: User) {
     return await res.json();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
 
@@ -50,7 +49,6 @@ export async function login(user: User) {
     return await res.json();
   } catch (error) {
     console.error(error);
-    //throw error;
   }
 }
 
@@ -66,7 +64,6 @@ export async function getRecipes<T>(userId: string): Promise<T> {
   } catch (error) {
     console.error(error);
     // handeling error
-    throw error;
   }
 }
 
@@ -85,7 +82,6 @@ export async function createRecipe(recipe: Recipe, id: string) {
     return await res.json();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
 
@@ -105,7 +101,6 @@ export async function toggleFavouritedBy(recipeId: string, userId: string) {
     return await res.json();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }
 
@@ -120,6 +115,5 @@ export async function deleteRecipe(userId: string, recipeId: string) {
     return await res.json();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 }

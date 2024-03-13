@@ -18,7 +18,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({recipe}) => {
   const recipes = useStore((state) => state.recipes);
   const { updateFilteredCategory, updateOneRecipe, removeOneRecipe } =
     useStore();
-  let favouriteRecipes = recipes.filter(
+  const favouriteRecipes = recipes.filter(
     (recipe) => recipe.favouritedBy.indexOf(userID) !== -1,
   );
   const navigate = useNavigate();
