@@ -1,12 +1,6 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { register } from "../../services/api-service";
 import { ToastContainer, toast } from "react-toastify";
-
-interface RegisterDetails {
-  firstName: string;
-  email: string;
-  password: string;
-}
 
 const initialRegisterDetails = {
   firstName: "",
