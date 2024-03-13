@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom';
 import FormIngredients from "../../../src/pages/create-recipe/form-ingredients";
 import { useStore } from "../../../src/zustand/store";
+import React from 'react';
 
 // Mock useStore hook from Zustand
 vi.mock('../../../src/zustand/store', () => ({

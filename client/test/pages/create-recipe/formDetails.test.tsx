@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import FormDetails from '../../../src/pages/create-recipe/form-details';
 import { useStore } from '../../../src/zustand/store';
+import React from 'react';
 
 // Mocking Cloudinary's createUploadWidget function
 global.cloudinary = {
