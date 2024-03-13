@@ -31,15 +31,6 @@ describe('User Registration and Login', () => {
     expect(response.status).toBe(401);
     expect(response.body.success).toBe(false);
   });
-  
-  it('should get a recipe for a user with id number ', async () => {
-    const userData = '65f06c83b7a88402af8c84be';
-    const response = await request.get(`/dashboard/${userData}`);
-
-    //const response = await request.get('/dashboard/:id').send(userData);
-   expect(response.status).toBe(200);
-   expect(response.body.success).toBe(true);
-  });
 
   it('should add the recipe', async () => {
     const userData = { email: 'test@example.com', password: 'password123' };
@@ -70,6 +61,15 @@ describe('User Registration and Login', () => {
     expect(response.body.success).toBe(true);
   });
 
+  it('should get a recipe for a user with id number ', async () => {
+    const userData = { email: 'test@example.com', password: 'password123' };
+    const user = await request.post('/login').send(userData);
+    const userID = user.body.user._id;
+    const response = await request.get(`/dashboard/${userID}`);
+
+   expect(response.status).toBe(200);
+   expect(response.body.success).toBe(true);
+  });
 });
 
 
