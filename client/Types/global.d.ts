@@ -9,10 +9,10 @@ interface Cloudinary {
       error: never,
       result: { event: string; info: { secure_url: string } }
     ) => void
-  ) => never;
+  ) => {open: () => void};
 }
 
 // Extending the Window interface to include cloudinary
-export interface Window {
+interface Window {
   cloudinary: Cloudinary;
 }
