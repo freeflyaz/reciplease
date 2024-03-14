@@ -5,7 +5,7 @@ import { FormState } from './form-details';
 interface FormMethodProps {
   state: FormState;
   setState: React.Dispatch<React.SetStateAction<FormState>>;
-  formSection: string;
+  // formSection: string;
   setFormSection: (section: string) => void;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -14,7 +14,7 @@ const FormMethod: React.FC<FormMethodProps> = ({
   state,
   setState,
   setFormSection,
-  handleSubmit,
+  handleSubmit
 }) => {
   // FUNCTIONS:
   // Update initial form state with steps
@@ -35,26 +35,26 @@ const FormMethod: React.FC<FormMethodProps> = ({
 
   // RENDER:
   return (
-    <div className='create-recipe-form'>
+    <div className="create-recipe-form">
       <form onSubmit={handleSubmit}>
         <h2>How do you make it, Chef?</h2>
         <FormNavigation setFormSection={setFormSection} />
-        <div className='create-recipe-form-method'>
+        <div className="create-recipe-form-method">
           {state.method.map((step, index) => (
             <textarea
               key={index}
-              name='method'
-              placeholder='Add step here'
+              name="method"
+              placeholder="Add step here"
               value={step}
               onChange={(event) => handleStepChange(event, index)}
               required
             />
           ))}
 
-          <button type='button' className='no-fill-btn' onClick={handleAddStep}>
+          <button type="button" className="no-fill-btn" onClick={handleAddStep}>
             Add Another Step
           </button>
-          <button type='submit'>Submit Recipe</button>
+          <button type="submit">Submit Recipe</button>
         </div>
       </form>
     </div>

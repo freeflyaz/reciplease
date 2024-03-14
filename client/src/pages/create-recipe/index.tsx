@@ -1,12 +1,12 @@
-import FormDetails from "./form-details";
-import FormIngredients from "./form-ingredients";
-import FormMethod from "./form-method";
-import Navbar from "../../components/navbar";
-import { useState } from "react";
-import { createRecipe } from "../../services/api-service";
-import { ToastContainer, toast } from "react-toastify";
-import { useStore } from "../../zustand/store";
-import { useNavigate } from "react-router-dom";
+import FormDetails from './form-details';
+import FormIngredients from './form-ingredients';
+import FormMethod from './form-method';
+import Navbar from '../../components/navbar';
+import { useState } from 'react';
+import { createRecipe } from '../../services/api-service';
+import { ToastContainer, toast } from 'react-toastify';
+import { useStore } from '../../zustand/store';
+import { useNavigate } from 'react-router-dom';
 
 interface RecipeState {
   title: string;
@@ -29,7 +29,7 @@ const initialState: RecipeState = {
   servings: 0,
   duration: 0,
   ingredients: [''],
-  method: [''],
+  method: ['']
 };
 
 const CreateRecipe: React.FC = () => {
@@ -62,7 +62,7 @@ const CreateRecipe: React.FC = () => {
     const { name, value } = e.target;
     setState((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value
     }));
   }
 
@@ -93,7 +93,7 @@ const CreateRecipe: React.FC = () => {
 
   // RENDER:
   return (
-    <div className='create-recipe-container'>
+    <div className="create-recipe-container">
       <Navbar />
       {formSection === 'Details' && (
         <FormDetails
@@ -114,13 +114,12 @@ const CreateRecipe: React.FC = () => {
         <FormMethod
           state={state}
           setState={setState}
-          handleChange={handleChange}
           setFormSection={setFormSection}
           handleSubmit={handleSubmit}
         />
       )}
       <ToastContainer
-        position='top-left'
+        position="top-left"
         autoClose={5000}
         hideProgressBar={true}
       />
