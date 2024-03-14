@@ -17,7 +17,7 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
   const [isUploaded, setIsUploaded] = useState(false);
   // USE REFS:
   const cloudinaryRef = useRef<Cloudinary>();
-  const widgetRef = useRef<{open: () => void}>({open: () => {}});
+  const widgetRef = useRef<{ open: () => void }>({ open: () => {} });
   useEffect(() => {
     // Function to initialize the widget
     const initWidget = () => {
@@ -27,23 +27,23 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
           {
             cloudName: 'dz1qipahy',
             uploadPreset: 'nrvaimia',
-            sources: ['local', 'url', 'camera'],
+            sources: ['local', 'url', 'camera']
           },
-          (
-            error: never,
-            result: { event: string; info: { secure_url: string } }
-          ) => {
+          (error, result) => {
+            if (error) {
+              console.error('Upload error:', error);
+            }
             if (result.event === 'success') {
               setState((prevState) => ({
                 ...prevState,
-                imageUrl: result.info.secure_url,
+                imageUrl: result.info.secure_url
               }));
               setIsUploaded(true);
             }
           }
         );
 
-       // return widgetRef.current;
+        // return widgetRef.current;
       } else {
         console.error('Cloudinary SDK not loaded');
       }
@@ -57,7 +57,7 @@ const UploadWidget: React.FC<UploadWidgetProps> = ({ setState }) => {
 
   return (
     <button
-      id='upload_widget_opener'
+      id="upload_widget_opener"
       className={isUploaded ? 'uploaded' : 'no-fill-btn'}
       onClick={() => widgetRef.current.open()}
     >

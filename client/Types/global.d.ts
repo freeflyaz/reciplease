@@ -1,3 +1,4 @@
+
 interface Cloudinary {
   createUploadWidget: (
     options: {
@@ -6,7 +7,7 @@ interface Cloudinary {
       sources: string[];
     },
     callback: (
-      error: never,
+      error: Error | null,
       result: { event: string; info: { secure_url: string } }
     ) => void
   ) => {open: () => void};
