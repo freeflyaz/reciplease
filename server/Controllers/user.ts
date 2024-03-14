@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import userModel from "../Models/user";
+import recipeModel from "../Models/recipe";
 import { Request, Response } from "express";
 
 //type RouteHandler = (req: Request, res: Response) => Promise<void>;
@@ -22,7 +23,6 @@ const registerUser = async (req: Request, res : Response) => {
       password: hash,
     });
     await newUser.save();
-    console.log('Request email: ', email, 'Request password: ', password);
 
     res.status(201).send({ success: true, message: "User created" });
   } catch (error) {
@@ -53,5 +53,32 @@ const loginUser = async (req: Request, res : Response) => {
   }
 };
 
-export default { registerUser, loginUser };
+const deleteUser = async (req: Request, res : Response) => {
+  try {
+    const { userId } = req.params;
+    const user = await userModel.findById(userId);
+    
+    if (!user) {
+      return res.status(404).send({ success: false, message: "User not found" });
+    }
+
+    // Iterate over the user's recipes and delete them using the deleteRecipe function
+    for (const recipeId of user.recipes) {
+      // Since deleteRecipe is designed to work with HTTP requests,
+      // we might refactor the recipe deletion logic into a separate function
+      // that can be called both here and in deleteRecipe to avoid duplication.
+      await recipeModel.deleteOne({ _id: recipeId });
+    }
+
+    // After deleting recipes, delete the user
+    await userModel.deleteOne({ _id: userId });
+
+    res.status(200).send({ success: true, message: "User and their recipes deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ success: false, message: "An error occurred while deleting the user and their recipes" });
+  }
+};
+
+export default { registerUser, loginUser, deleteUser };
 // logoutUser;
