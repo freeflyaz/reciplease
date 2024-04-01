@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import React from 'react';
 import AddAndSearchBar from '../../../src/pages/dashboard/add-and-search-bar';
 import { BrowserRouter as Router } from "react-router-dom";
 

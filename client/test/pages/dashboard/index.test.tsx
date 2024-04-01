@@ -4,7 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import '@testing-library/jest-dom/vitest';
 import Dashboard from '../../../src/pages/dashboard';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 
 vi.mock('../../../src/services/api-service', () => ({
   getRecipes: vi.fn().mockResolvedValue({

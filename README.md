@@ -4,38 +4,28 @@
 
 ### What is Reciplease?
 
-We've all encountered the frustration of having recipes scattered across websites, cookbooks, magazines and handwritten notes. Reciplease aims to solve this problem by providing a central hub for all of your recipes, regardless of their origin. This allows you to easily organise, access, and personalise your favourite culinary creations, all in one convenient place.
-
-### Technologies
-
-Choosing the right tools was important to create this app within the one week deadline. Figma helped me to design the app's interface, while Node.js, Express, MongoDB and Mongoose combined to build the robust backend. React brought the frontend to life using Zustand as a global state manager, Cloudinary to provide a seamless solution for image storage and React-Toastify to add helpful pop-up notifications throughout the app.
+Reciplease tackles the common annoyance of juggling recipes from various sources like websites, books, and scribbles. It offers a one-stop solution where you can neatly gather, manage, and customize your go-to recipes in a handy spot.
 
 ### Features
 
-- Log In/Register page
-- A dashboard of the users recipes
-- A three step form to create recipes
-- The ability to filter recipes based on their category, if they are a favourite or through a search query
-- Each recipe on the dashboard links to its own recipe detail page where users can see the details, ingredients and method
+- A sign-in/sign-up interface
+- A personalized panel displaying the user's recipe collection
+- A simple, three-part process for adding new recipes
+- Features to sort recipes by type, mark as favorites, and search functionality
+- Clickable recipes that lead to a detailed page showcasing the recipe's specifics, components, and preparation steps
 
-I have also implemented responsiveness across a range of devices and dark mode:
 
-<img src="./readme-assets/Devices.png" width="750" style="display: block; margin: 0 auto;">
 
-### Challenges
+<img src="./readme-assets/Reciplease.png" width="750" style="display: block; margin: 0 auto;">
 
-Mastering atomic commits, preventing data mutation in React, and diving into a new state manager, Zustand, all presented their own challenges.
+Responsiveness across a range of devices and dark mode:
 
-### Future developments
+<img src="./readme-assets/Reciplease2.png" width="450" style="display: block; margin: 0 auto;">
 
-I plan to enable:
+## Contributors
 
-- Recipe editing
-- Smoother carousel navigation on the dashboard
-- A robust authentication system using JWT
-- The integration of the Edamam API’s recipe search to provide users with recipes based off of their available ingredients
+- **Gabe Mata** - Refactored the codebase to TypeScript, integrated end-to-end testing with Cypress, and developed new modular components.
 
-A longer-term goal is to make the app a social platform where users can share their recipes with other users.
 
 ### **How to Install and Run the Project**
 
@@ -48,7 +38,7 @@ A longer-term goal is to make the app a social platform where users can share th
 1. Fork the repositiory
 
 2. Clone the repository in your chosen destination:
-   `git clone <repository_url>`
+   `git clone https://github.com/freeflyaz/reciplease/`
 
 3. Install dependencies:
    - Navigate to the *server* folder and run:
